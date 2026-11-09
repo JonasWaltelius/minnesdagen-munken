@@ -8,22 +8,67 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @keyframes flameGlow {
-      0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.8)); }
-      50% { transform: scale(1.08) rotate(1.5deg); filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.95)); }
+      0%, 100% {
+        transform: scale(1) rotate(-1deg);
+        filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.85)) drop-shadow(0 -4px 22px rgba(245, 158, 11, 0.6));
+      }
+      50% {
+        transform: scale(1.08) rotate(1.5deg);
+        filter: drop-shadow(0 0 22px rgba(245, 158, 11, 0.95)) drop-shadow(0 -6px 30px rgba(239, 68, 68, 0.5));
+      }
     }
-    .flame-anim { animation: flameGlow 2.5s ease-in-out infinite; transform-origin: center bottom; }
-    .fade-in { animation: fadeIn 0.25s ease-out forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .flame-anim {
+      animation: flameGlow 2.5s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+    .fade-in {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 3D Retro/Poster-typografi inspirerad av bifogad bild */
+    .title-jagged-style {
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      background: linear-gradient(180deg, #ff9e1b 0%, #f95316 55%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1.5px #fde047;
+      filter: drop-shadow(2px 2px 0px #7c1a08) 
+              drop-shadow(4px 4px 0px #1c0602) 
+              drop-shadow(6px 6px 1px #000000);
+    }
+    @media (min-width: 640px) {
+      .title-jagged-style {
+        -webkit-text-stroke: 2px #fde047;
+        filter: drop-shadow(3px 3px 0px #7c1a08) 
+                drop-shadow(6px 6px 0px #1c0602) 
+                drop-shadow(8px 8px 2px #000000);
+      }
+    }
   </style>
 </head>
 <body class="bg-stone-950 text-stone-100 min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white flex flex-col justify-between">
 
-  <!-- Top bar med Admin-knapp -->
+  <!-- Header med diskret årskursnavigering och Admin -->
   <header class="border-b border-stone-800/80 bg-stone-900/60 backdrop-blur sticky top-0 z-30">
     <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-      <button onclick="navTo('home')" class="text-xs uppercase tracking-widest font-semibold text-stone-400 hover:text-amber-300 transition flex items-center gap-2">
-        <span class="text-amber-500">🕯️</span> Nya Munken
-      </button>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <button onclick="navTo('home')" class="text-xs uppercase tracking-widest font-semibold text-stone-400 hover:text-amber-300 transition flex items-center gap-1.5">
+          <span class="text-amber-500">🕯️</span> Nya Munken
+        </button>
+        <!-- Diskreta länkar till årskurserna -->
+        <nav class="flex items-center gap-2 sm:gap-3 text-xs text-stone-500 font-medium">
+          <button onclick="navTo('ak7')" class="hover:text-stone-300 transition px-1 py-0.5">Åk 7</button>
+          <span class="text-stone-700">/</span>
+          <button onclick="navTo('ak8')" class="hover:text-stone-300 transition px-1 py-0.5">Åk 8</button>
+          <span class="text-stone-700">/</span>
+          <button onclick="navTo('ak9')" class="hover:text-stone-300 transition px-1 py-0.5">Åk 9</button>
+        </nav>
+      </div>
       <div class="flex items-center gap-3">
         <button onclick="toggleAdminModal()" class="text-xs px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition flex items-center gap-1.5 shadow-sm">
           <span>⚙️</span> Redigera (Admin)
@@ -37,18 +82,21 @@
     <!-- STARTSIDA -->
     <section id="view-home" class="fade-in space-y-10">
       <div class="text-center space-y-4 pt-4">
-        <div class="flex justify-center items-center gap-4">
-          <h1 class="text-3xl sm:text-5xl font-serif tracking-tight text-stone-100 font-bold">
+        <div class="flex justify-center items-center gap-3 sm:gap-5">
+          <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight title-jagged-style py-2">
             Förintelsens minnesdag
           </h1>
-          <div class="relative w-10 h-16 sm:w-12 sm:h-20 flex-shrink-0 flex items-end justify-center">
-            <div class="w-4 sm:w-5 h-8 sm:h-10 bg-gradient-to-t from-stone-400 to-stone-200 rounded-t-sm shadow-md relative">
-              <div class="w-0.5 h-2 bg-stone-900 mx-auto -mt-2"></div>
-              <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-4 h-7 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim"></div>
+          <!-- Uppgraderat flammande ljus -->
+          <div class="relative w-12 h-20 flex-shrink-0 flex items-end justify-center select-none">
+            <div class="w-5 h-10 bg-gradient-to-t from-stone-400 via-stone-200 to-amber-50 rounded-t-sm shadow-inner relative">
+              <div class="w-0.5 h-2.5 bg-stone-900 mx-auto -mt-2.5 rounded-full"></div>
+              <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-4 h-8 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim flex items-center justify-center">
+                <div class="w-1.5 h-3 bg-gradient-to-t from-blue-400 via-amber-200 to-white rounded-full mt-2 opacity-90"></div>
+              </div>
             </div>
           </div>
         </div>
-        <p class="text-stone-400 text-sm sm:text-base tracking-wide uppercase font-medium">
+        <p class="text-stone-400 text-sm sm:text-base tracking-widest uppercase font-semibold">
           Onsdag 27 januari 2027
         </p>
       </div>
@@ -80,12 +128,12 @@
         </ul>
       </div>
 
-      <!-- Korten för Åk 7, 8 och 9 -->
+      <!-- Korten för Åk 7, 8 och 9 utan emojis -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
         <!-- År 7 -->
         <button onclick="navTo('ak7')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-xl bg-blue-950/60 text-blue-400 flex items-center justify-center text-2xl border border-blue-800/40">💻</div>
+            <span class="text-xs font-mono font-bold text-stone-400 bg-stone-800/80 px-2 py-1 rounded inline-block">ÅK 7</span>
             <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 7</h3>
             <p class="text-stone-400 text-sm">Vad var Förintelsen?</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
@@ -96,7 +144,7 @@
         <!-- År 8 -->
         <button onclick="navTo('ak8')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-2xl border border-emerald-800/40">🤝</div>
+            <span class="text-xs font-mono font-bold text-stone-400 bg-stone-800/80 px-2 py-1 rounded inline-block">ÅK 8</span>
             <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 8</h3>
             <p class="text-stone-400 text-sm">Modiga personer & presentationer</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
@@ -107,7 +155,7 @@
         <!-- År 9 -->
         <button onclick="navTo('ak9')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <div class="w-12 h-12 rounded-xl bg-rose-950/60 text-rose-400 flex items-center justify-center text-2xl border border-rose-800/40">🎬</div>
+            <span class="text-xs font-mono font-bold text-stone-400 bg-stone-800/80 px-2 py-1 rounded inline-block">ÅK 9</span>
             <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 9</h3>
             <p class="text-stone-400 text-sm">Film: Amrum & efterarbete</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
@@ -309,15 +357,17 @@
       </div>
 
       <div class="my-auto max-w-3xl mx-auto text-center space-y-8 py-8">
-        <div class="relative w-16 h-24 mx-auto flex items-end justify-center">
-          <div class="w-6 h-12 bg-gradient-to-t from-stone-400 to-stone-200 rounded-t-sm shadow-md relative">
-            <div class="w-0.5 h-2 bg-stone-900 mx-auto -mt-2"></div>
-            <div class="absolute -top-8 left-1/2 -translate-x-1/2 w-6 h-10 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim"></div>
+        <div class="relative w-16 h-28 mx-auto flex items-end justify-center select-none">
+          <div class="w-7 h-14 bg-gradient-to-t from-stone-400 via-stone-200 to-amber-50 rounded-t-sm shadow-lg relative">
+            <div class="w-1 h-3 bg-stone-900 mx-auto -mt-3 rounded-full"></div>
+            <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-6 h-11 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim flex items-center justify-center">
+              <div class="w-2.5 h-5 bg-gradient-to-t from-blue-400 via-amber-200 to-white rounded-full mt-3 opacity-90"></div>
+            </div>
           </div>
         </div>
 
         <div class="space-y-2">
-          <h2 class="text-4xl sm:text-6xl font-serif font-bold text-stone-100">Förintelsens minnesdag</h2>
+          <h2 class="text-4xl sm:text-6xl font-black title-jagged-style">Förintelsens minnesdag</h2>
           <p class="text-stone-400 text-base sm:text-xl uppercase tracking-widest">27 januari • Nya Munken</p>
         </div>
 
