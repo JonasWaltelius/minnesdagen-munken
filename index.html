@@ -7,28 +7,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes candleFlameFlicker {
-      0%, 100% {
-        transform: scale(1) rotate(-0.5deg);
-        filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.75)) drop-shadow(0 -4px 20px rgba(245, 158, 11, 0.5));
-      }
-      25% {
-        transform: scale(1.04, 0.98) rotate(1deg);
-        filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.9)) drop-shadow(0 -6px 28px rgba(239, 68, 68, 0.6));
-      }
-      50% {
-        transform: scale(0.98, 1.03) rotate(-1deg);
-        filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.8)) drop-shadow(0 -4px 22px rgba(245, 158, 11, 0.55));
-      }
-      75% {
-        transform: scale(1.03, 1.02) rotate(0.8deg);
-        filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.95)) drop-shadow(0 -6px 26px rgba(239, 68, 68, 0.55));
-      }
-    }
-    .candle-flicker {
-      animation: candleFlameFlicker 3s ease-in-out infinite;
-      transform-origin: center 30%;
-    }
     .fade-in {
       animation: fadeIn 0.25s ease-out forwards;
     }
@@ -57,6 +35,127 @@
                 drop-shadow(5px 5px 0px #1c0602) 
                 drop-shadow(7px 7px 2px #000000);
       }
+    }
+
+    /* REALISTISKT VITT LJUS (INTEGRERAD MODELL) */
+    .candle-container {
+      position: relative;
+      width: 60px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* Skalning för startsidan */
+    .candle-header-scale {
+      transform: scale(0.38);
+      transform-origin: center center;
+      margin: -95px -12px;
+    }
+    @media (min-width: 640px) {
+      .candle-header-scale {
+        transform: scale(0.48);
+        margin: -80px -8px;
+      }
+    }
+
+    /* Skalning för projektorläget */
+    .candle-projector-scale {
+      transform: scale(0.65);
+      transform-origin: center center;
+      margin: -50px auto;
+    }
+
+    .candle-body {
+      width: 50px;
+      height: 180px;
+      background: linear-gradient(to right, #e6e6e6, #ffffff 40%, #d9d9d9);
+      border-radius: 4px 4px 2px 2px;
+      box-shadow: inset 0 15px 20px rgba(255, 255, 255, 0.8),
+                  0 0 20px rgba(255, 255, 255, 0.05);
+      position: absolute;
+      bottom: 0;
+    }
+
+    .wick {
+      width: 3px;
+      height: 15px;
+      background-color: #222;
+      position: absolute;
+      top: 92px;
+      border-radius: 1px;
+    }
+
+    .flame {
+      position: absolute;
+      top: 40px;
+      width: 24px;
+      height: 60px;
+      border-radius: 50% 50% 35% 35% / 70% 70% 35% 35%;
+      background: radial-gradient(circle at 50% 80%, #ffffff 20%, #fbfbfb 60%, rgba(255,255,255,0) 100%);
+      box-shadow: 0 -4px 15px rgba(255, 255, 255, 0.6),
+                  0 -10px 30px rgba(255, 255, 255, 0.3),
+                  0 4px 20px rgba(255, 255, 255, 0.2);
+      transform-origin: center bottom;
+      animation: flicker 4s ease-in-out infinite, sway 6s ease-in-out infinite;
+      filter: blur(0.5px);
+    }
+
+    @keyframes flicker {
+      0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.95;
+        box-shadow: 0 -4px 15px rgba(255, 255, 255, 0.6);
+      }
+      5% { 
+        transform: scale(1.02, 0.98); 
+        opacity: 1;
+      }
+      10% { 
+        transform: scale(0.97, 1.03); 
+        opacity: 0.92;
+      }
+      15% { 
+        transform: scale(1.01, 1); 
+        opacity: 0.98;
+        box-shadow: 0 -4px 18px rgba(255, 255, 255, 0.7);
+      }
+      25% { 
+        transform: scale(0.98, 1.01); 
+        opacity: 0.94;
+      }
+      32% {
+        transform: scale(1.03, 0.97);
+        opacity: 1;
+      }
+      45% {
+        transform: scale(0.96, 1.02);
+        opacity: 0.91;
+      }
+      60% {
+        transform: scale(1.01, 0.99);
+        opacity: 0.97;
+      }
+      75% {
+        transform: scale(0.97, 1.04);
+        opacity: 0.93;
+      }
+      88% {
+        transform: scale(1.02, 0.96);
+        opacity: 0.99;
+      }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(0deg); }
+      12% { transform: rotate(1.5deg) skewX(1deg); }
+      28% { transform: rotate(-1deg) skewX(-0.5deg); }
+      42% { transform: rotate(2deg) skewX(1.5deg); }
+      55% { transform: rotate(-1.5deg) skewX(-1deg); }
+      70% { transform: rotate(1deg) skewX(0.5deg); }
+      82% { transform: rotate(-2deg) skewX(-1.5deg); }
     }
   </style>
 </head>
@@ -91,15 +190,15 @@
     <!-- STARTSIDA -->
     <section id="view-home" class="fade-in space-y-10">
       <div class="text-center space-y-4 pt-4">
-        <div class="flex justify-center items-center gap-3 sm:gap-6">
+        <div class="flex justify-center items-center gap-2 sm:gap-5 overflow-visible">
           <h1 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-wider title-jagged-style py-2">
             FÖRINTELSENS MINNESDAG
           </h1>
-          <!-- Animerat levande ljus från bilden -->
-          <div class="relative w-10 sm:w-14 h-24 sm:h-28 flex-shrink-0 flex items-center justify-center select-none overflow-visible">
-            <img src="data:image/webp;base64,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" 
-                 alt="Tänt ljus" 
-                 class="h-full w-auto object-contain candle-flicker mix-blend-screen pointer-events-none" />
+          <!-- Integrerat vitt ljus (skalat) -->
+          <div class="candle-container candle-header-scale select-none pointer-events-none">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="candle-body"></div>
           </div>
         </div>
         <p class="text-stone-400 text-sm sm:text-base tracking-widest uppercase font-semibold">
@@ -134,7 +233,7 @@
         </ul>
       </div>
 
-      <!-- Korten för Åk 7, 8 och 9 utan emojis och utan etiketter -->
+      <!-- Korten för Åk 7, 8 och 9 -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
         <!-- År 7 -->
         <button onclick="navTo('ak7')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
@@ -359,12 +458,12 @@
         </button>
       </div>
 
-      <div class="my-auto max-w-3xl mx-auto text-center space-y-8 py-8">
-        <!-- Större animerat ljus på introskärmen -->
-        <div class="relative w-14 sm:w-20 h-32 sm:h-40 mx-auto flex items-center justify-center select-none overflow-visible">
-          <img src="data:image/webp;base64,UklGRk4KAABXRUJQVlA4IEIKAABwVwCdASrwAJ8BPlEoj0YjpqkjJHb5ESAKCWctyYlfExCgGZgcTTJnwluAEVCdIqwXqqPgRRNsn6L46Y9mVRVrI/iVYiX7DAQ/GZlTIhNU67g0lbuFNTAJelCkfw1TgTnXgfq2DIMnSRqmOFI1Nzmr8berkKJHOzUas5ugC0gM391VxVo0Zb/iBSD/fv3HXX7kJ672UGhP/SSlHVveueQgbQxxjY443/E44wrB+Awf+fxOgr2tXShgIZpZKZSZPEpsnSNeERDrKcUyfeR0OXGkCgQbWFZ+GqfMTRUBqprLYL2H1o/powgLWgzP14yXTtbmqnKBEUmAq7nznt6fMWe5rqEzcdkt4Zz6gz0EfCyOPbC6S07vFXcfZfky/d4yw/bVW0Aw0yAp7VNEtX6jCwe/oaTV/K+NJZbtX8+s/O7ttiWoyE9WSxCut6utcD0QcJbvys2Y4nkOYbY01Ko8MOgKjH5wp79T7FZ6ZgZmumgHqThKxwKIaPdE/nq42mo8xbhCQZWzroQ50M9Pq0Avgcgg9r2MXTQye6AZ3lCjPmXUZU19wcQZv3JguWXslA0/ElYxQFbyqG4W/kOoAAQmHr9MJGTbtTd3y8Xf99RovRC/KxKYlVSXKwz2oiySdutfHn+qkfBphQlJtMC1/iMT3FuA9rBsaEXVqumixiIyWu6dD4cQ3DABJsbZJCO3EMglNVPvjXShxFItc+y1E9QHP2TOTnH3Be/2oNP7381D9eAXs2hKzaCbbld+qOMTDca37sK2AHPMQpvdeE5WJrfSjLgMLP/oniZ1U0NlhzPtvNgUmLj+8nDYvy5egaVdRNRd3BYBSl/iAgTJ0RpEHU3d9rGp3xOCT1tVRitoAKtAU1FQ7Bi7egnr4cg0WNHpZBlc3mn/acyqN+akgmSySNxbwwk/cuT6B25TUCnBmwQm30lYJzcocAAA/vzOY6pTJjAv7iyKVWriy5uBOdIYrJIB5M1SO6/FM7PKcZykjESDn8zqFPL2C2rwgBe6K3/LePJmsIwGtcCw48DwH0WbtwGcKRAr5Z2ppAg/pRQpC6N82dXUVbf5KKfM1P5ZlovgHvSzg0iT4DNuKprRBhaPUE+bxspaNfoE2TpgmbbHeOzqWa/DtJnMw3y+ytlNmSAf57fkEYX3xwIe2yhMnIEolr9ozIEY3M2Y/taGk+lsm4u2m32m36k9/Kia8TwrDWRjtgHMa63Hxk+FN57kz21lDC/XWH8y9UkBch8m37MeZTXeyjrSsG6zwGxLj1HMKam8VyW6lQFHvSxRhLTXyiiZ5Cv2JgJQrV/NDqoR2ct+kukD4J/mUqt0W3ZQeRABrX/lVtIjN5j/A/Yvuy5cOVO+QONY0JTA8lOmEkDae1bmM6Vr3+Brlip2tTDup6bV4cOMyF/OgVTtWeef6cflkpAyopmEtcm9PYwEi3F3Ed3WcpCA9hSRgIwr/GZh/f5rJbAZAKyMHb8PJzDHxNdWOn2clPe1A794OWjDjbEo6AxjekLYWL+eFZs9QbpoL8SeO8F61pxDliMJl2Uxx0kh2t9uLyvjjJ+QanYH66VbMSRXjdnmnhS/NCwp52lqGfo+zzU/sJ3ziCZ6gRHqWs1wlYhzZSh0xdnZWa46LQXkQv/eZvG9VFxDcJU8+rKh+cAFDEvkMHJH7N6fsuXM8fhEA0WbXE3A4tyS6o7m2/bwrZprIEfLqI9Dm+etG4+m+wzwX4utuqya0fCA2NlXnCMG6GlpU6Vu6EaSd7DQQqipqU8+WC+zUCJVGYVZUnMSBOnbJIJXFeuqtz0BtCnmBfv8x09BZHRmvqtgpJTa2m1dExfYuJX44u8W46iJuQ9M7HpPXV7eVZWqkqci+4kLZoVczvNirGW+um2onbRKoBJf3cwhmtgRm5YVYBRZ1uchE8WfZQYM6XgU2JYu87p6hyK3T6wa4RoAwjvYbqBK5Gevta6/XZsrNPTDMCou6vkWONRRKER8VYqN0fvLYTPI45clQLsOlhtWfaZ0ljqoeMrlE0aRmAoWnzJnTeUPdx52DponHeIw7POdPXRuRjhJv0ew5LDQJvfyjebtAzwQ3ydgHpo6IchPCjav4Ydi+e5zP/THFvUXIHSer7W/No+MQVU7e7cluVzgLMQtiJf+iCaK6poxkxgr3S6qLmkmria+HrRWiisTha7udX1AXzrGWc1EYd8lkVxCkY3u/VL1GtyszeFPPB9PPW6ko+wXglcoyBijcKzczaq/pflYpPCWV7BOEd55YW74Zg8qjTaOBd8DH1qfrtgujnUEM7vf+K0Kb/yTVbzwSRb1zenXSKol0jX75ZlSHmgVgsihnfO6rJXELCPphXbc1jiEN9yRS8YqnhbY4rWMHmiYJArfgEGdykA9GDCJnqaG4PLfPdox1/auThtNhx1NbHqA1DQb4y/pC1fQW0gxfEuPq+zfiWc7Dn4SdZCWLexS+wAGy03XKYAr17HWyEttAR+f47gSQbRX8jgbDt9YH2V69teW5WN0VxU9QgKcB7ZQeyBwthbaRRSp/FcBojJlWMKmZ/B7RU3N9OeNPLV2yj/ch+NJ95HNvOfwPp61ggdQdfinnpfK4/5s9ZW8JDakXulSPQZ+AltcyvESUvHIpO1SPlEwV6w9fsgHEgWce9ktshSoq71CNAwCP+OFWeG5OxDJR2fBnCEy0Dyk8mcXOAgToTItujG64kIlAjjqgEPPz8GL5wQpBOup9YhWeZPdMe1qdXVvpJaHgj6fM1Zhdd4YlNFhYK76y7tTU2E2LxNDRMNBHCRzrZjMxcGLwCxgra91mqNzSqDSsnCSucI5Fmmwz7WVnNrAS2BdpD6xRsidVeFLf1z3/5w37eiRUKJNMJ2iGWs0bsR2gdrGsX+2W9YaDkjeOQjx5A6OiPlXd8St0z0ZEib0zM9pItJPbhBvw1N37nRum/3ww8noFCzzFFagi2axfWpoIX7QCkIoihEYOhNc8Cb+MNViW1Rul7zm0dpc8fsweQe4w8K272O7BXvSuU5LB1yRCSnLRMzkIFUgGxg63z3yKUfFTeIS8VV5iHvGRNSI10oG+4knGC54sccR2vLgIGcDHawiZj2zPXn41vWAQdIP0HwXLD2W+eVkoZKIcMqaUdCM4DELSwouZmUlbtN++HlpRrJpK/yBpr9+MXiIDKMVxWWfLiGfKWcQCZqsFIbPsMZ72ij8ZlJVCwqVueDCsEEQEb2i0LiPN4l3OFQDLFn6NwE7Du0dDHdh6c1f7wNmgScBr9n9ZdaxC+6dxSsmJCvKn6qsLgMqSc4JBfzKxDtiRdN/EmQo4FNQUET3xD9MgYlPMvthGEbS7o2qqXw6BLUY7VqbsZzAriFUDpiB697HOwtvZbp5PtkQpNh5ItjsAEbeub9a7Slten0xroKoB1EYAAAPpe36XBkgM2zWNnsNqTk7DPWZBoOpuynbUc5dKVbodTcAAAAAAD6faMqHZgYjFeYMKsbxLApzgHz3z0nBgzVBPqI/peJNqAAAAAAA" 
-               alt="Tänt ljus" 
-               class="h-full w-auto object-contain candle-flicker mix-blend-screen pointer-events-none" />
+      <div class="my-auto max-w-3xl mx-auto text-center space-y-6 py-6">
+        <!-- Vitt ljus i projektorstorlek -->
+        <div class="candle-container candle-projector-scale select-none pointer-events-none">
+          <div class="flame"></div>
+          <div class="wick"></div>
+          <div class="candle-body"></div>
         </div>
 
         <div class="space-y-2">
