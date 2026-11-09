@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Förintelsens minnesdag Nya Munken</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes flameGlow {
+      0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.8)); }
+      50% { transform: scale(1.08) rotate(1.5deg); filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.95)); }
+    }
+    .flame-anim { animation: flameGlow 2.5s ease-in-out infinite; transform-origin: center bottom; }
+    .fade-in { animation: fadeIn 0.25s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-100 min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white flex flex-col justify-between">
+
+  <!-- Top bar med Admin-knapp -->
+  <header class="border-b border-stone-800/80 bg-stone-900/60 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+      <button onclick="navTo('home')" class="text-xs uppercase tracking-widest font-semibold text-stone-400 hover:text-amber-300 transition flex items-center gap-2">
+        <span class="text-amber-500">🕯️</span> Nya Munken
+      </button>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleAdminModal()" class="text-xs px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition flex items-center gap-1.5 shadow-sm">
+          <span>⚙️</span> Redigera (Admin)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+
+    <!-- STARTSIDA -->
+    <section id="view-home" class="fade-in space-y-10">
+      <div class="text-center space-y-4 pt-4">
+        <div class="flex justify-center items-center gap-4">
+          <h1 class="text-3xl sm:text-5xl font-serif tracking-tight text-stone-100 font-bold">
+            Förintelsens minnesdag
+          </h1>
+          <div class="relative w-10 h-16 sm:w-12 sm:h-20 flex-shrink-0 flex items-end justify-center">
+            <div class="w-4 sm:w-5 h-8 sm:h-10 bg-gradient-to-t from-stone-400 to-stone-200 rounded-t-sm shadow-md relative">
+              <div class="w-0.5 h-2 bg-stone-900 mx-auto -mt-2"></div>
+              <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-4 h-7 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-stone-400 text-sm sm:text-base tracking-wide uppercase font-medium">
+          Onsdag 27 januari 2027
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="font-bold text-base sm:text-lg text-stone-300 leading-relaxed">
+          Den 27 januari samlas människor över hela världen i en årlig manifestation. Det är den internationella minnesdagen för Förintelsens offer – samma datum som förintelselägret Auschwitz-Birkenau befriades av Röda Armén 1945.
+        </p>
+      </div>
+
+      <!-- Informationsruta -->
+      <div class="max-w-4xl mx-auto bg-stone-900/90 border border-stone-700/80 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
+        <h2 class="text-xl sm:text-2xl font-bold text-amber-300">
+          Minnesdagen på Nya Munken uppmärksammas kl. 09:00–11:00.
+        </h2>
+        <ul class="space-y-3 text-[17px] text-stone-300 leading-relaxed">
+          <li class="flex items-start gap-2.5">
+            <span class="text-amber-500 font-bold">•</span>
+            <span>Samtliga elever börjar med ordinarie lektioner på morgonen (om klassen har det schemalagt). Lektionerna bryts <strong>kl. 08:50</strong> för samling i klassrummen inför uppstart <strong>kl. 09:00</strong>.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-amber-500 font-bold">•</span>
+            <span>Mentorer är med sin klass den här förmiddagen. Personal som inte är mentorer hjälper till där det behövs. Resurser följer sina respektive elever/klasser.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span class="text-amber-500 font-bold">•</span>
+            <span>Ordinarie schema återupptas helt från och med <strong>kl. 11:10</strong>. Lunch eller lektion som påverkas av detta kommuniceras mellan respektive lärare och klass (t.ex. om lektionen blir kortare).</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Korten för Åk 7, 8 och 9 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <!-- År 7 -->
+        <button onclick="navTo('ak7')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-blue-950/60 text-blue-400 flex items-center justify-center text-2xl border border-blue-800/40">💻</div>
+            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 7</h3>
+            <p class="text-stone-400 text-sm">Vad var Förintelsen?</p>
+            <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
+          </div>
+          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+        </button>
+
+        <!-- År 8 -->
+        <button onclick="navTo('ak8')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-2xl border border-emerald-800/40">🤝</div>
+            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 8</h3>
+            <p class="text-stone-400 text-sm">Modiga personer & presentationer</p>
+            <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
+          </div>
+          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+        </button>
+
+        <!-- År 9 -->
+        <button onclick="navTo('ak9')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-rose-950/60 text-rose-400 flex items-center justify-center text-2xl border border-rose-800/40">🎬</div>
+            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 9</h3>
+            <p class="text-stone-400 text-sm">Film: Amrum & efterarbete</p>
+            <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
+          </div>
+          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ÅRSKURS 7 -->
+    <section id="view-ak7" class="hidden fade-in space-y-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
+        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="openProjector('ak7')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
+          <span>📽️</span> Introskärm (år 7)
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 7</h2>
+        <p class="text-amber-400 font-medium">Tema: Vad var Förintelsen? • Pass: kl. 09:00–11:00</p>
+      </div>
+
+      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
+        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Få förståelse för vad Förintelsen var utifrån frågorna vem, hur, när, var och varför.</p>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Presentation som innehåller genomgång, filmer och diskussioner.</p>
+        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300">
+          <div>
+            <p class="font-bold text-stone-100">• Start kl. 09:00: Introfilm (5 min)</p>
+            <p class="pl-4 text-stone-300">Sätt igång introfilmen (som finns länkad längst ner på sidan) via projektorn.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Presentation (länk längst ner på sidan)</p>
+            <p class="pl-4 text-stone-300">Öppna presentationen och gå igenom bild för bild. Allt du ska säga och göra finns i presentationen.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Frågor i basgrupp och helklass</p>
+            <p class="pl-4 text-stone-300">Frågorna till filmen i presentationen besvaras i basgruppen och lyfts sedan i helklass muntligt eller på tavlan.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Övning om Nürnberglagarna</p>
+            <p class="pl-4 text-stone-300">Eleverna diskuterar och argumenterar om lagarna som skärmade av den judiska befolkningen från samhället.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Avslutning och anpassning</p>
+            <p class="pl-4 text-stone-300">Passet beräknas ta ca 1,5 h utan rast. Avsluta med den anpassningsbara övningen "Knyta ihop säcken" så ni är klara till kl. 11:00.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <div id="rooms-ak7" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      </div>
+
+      <div class="space-y-4 pt-4 border-t border-stone-800">
+        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <div id="links-ak7" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ÅRSKURS 8 -->
+    <section id="view-ak8" class="hidden fade-in space-y-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
+        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="openProjector('ak8')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
+          <span>📽️</span> Introskärm (år 8)
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 8</h2>
+        <p class="text-amber-400 font-medium">Tema: Modiga personer under Förintelsen • Pass: kl. 09:00–11:00</p>
+      </div>
+
+      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
+        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Få kännedom om viktiga personer under Förintelsen och hur enskilda personer kan påverka.</p>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Läsa och sammanfatta text, skapa en presentation samt presentera denna för klassen.</p>
+        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300">
+          <div>
+            <p class="font-bold text-stone-100">• Start kl. 09:00: Introfilm (5 min)</p>
+            <p class="pl-4 text-stone-300">Sätt igång introfilmen (som finns länkad längst ner på sidan) via projektorn.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Innan passet</p>
+            <div class="pl-4 text-stone-300 space-y-2">
+              <p>Mentorer lägger upp följande på Google Classroom:</p>
+              <ol class="list-decimal list-inside space-y-0.5 text-stone-200">
+                <li>personporträtt,</li>
+                <li>mall och</li>
+                <li>elevinstruktion.</li>
+              </ol>
+              <div class="mt-3 p-3 bg-stone-950/80 border border-stone-800 rounded-lg text-sm text-stone-300">
+                <span class="font-bold text-amber-400">Gör så här i Classroom:</span> Öppna länkarna längst ner på sidan och bifoga i en ny uppgift. Sätt inställningen på <em>"Gör en kopia för varje elev"</em> på presentationsmallen så varje grupp får ett eget exemplar.
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Genomgång Anne Frank (ca 15 min)</p>
+            <p class="pl-4 text-stone-300">Lyssna på ljudfilen om Anne Frank och gå igenom exempelpresentationen som mentor lagt upp.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Arbete i basgrupper (ca 45 min)</p>
+            <p class="pl-4 text-stone-300">Eleverna läser faktablad om sin tilldelade person och sammanställer text och bild i sin mall.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Presentationer (ca 30–40 min)</p>
+            <p class="pl-4 text-stone-300">Basgrupperna presenterar sina personporträtt för varandra så alla får del av olika öden.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Reflektioner och avslutning</p>
+            <p class="pl-4 text-stone-300">Gemensam reflektion och diskussion om mod. Som en avslutande uppgift kan eleverna skriva ett brev till en person de undersökt och uttrycka vad de beundrade med deras handlingar. Detta för att uppmuntra personlig reflektion och empati.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <div id="rooms-ak8" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      </div>
+
+      <div class="space-y-4 pt-4 border-t border-stone-800">
+        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <div id="links-ak8" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ÅRSKURS 9 -->
+    <section id="view-ak9" class="hidden fade-in space-y-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
+        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="openProjector('ak9')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
+          <span>📽️</span> Introskärm (år 9)
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 9</h2>
+        <p class="text-amber-400 font-medium">Tema: Film & Reflektion • Pass: kl. 09:00–11:00</p>
+      </div>
+
+      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
+        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Hur förintelsen visas på film och hur vi kan tänka kring detta.</p>
+        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Se film och reflektera kring denna.</p>
+        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300">
+          <div>
+            <p class="font-bold text-stone-100">• Filmvisning (kl. 09:00–10:30)</p>
+            <p class="pl-4 text-stone-300">Eleverna ser filmen "Amrum" (1 h 30 min) i klassrummet via projektor.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Efterarbete & reflektion (kl. 10:30–11:00)</p>
+            <p class="pl-4 text-stone-300">Samtal i basgrupper och helklass kring filmens frågeställningar och hur historien gestaltas.</p>
+          </div>
+          <div>
+            <p class="font-bold text-stone-100">• Avrundning</p>
+            <p class="pl-4 text-stone-300">Passet avslutas kl. 11:00 inför återgång till ordinarie lektionsschema från kl. 11:10.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <div id="rooms-ak9" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      </div>
+
+      <div class="space-y-4 pt-4 border-t border-stone-800">
+        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <div id="links-ak9" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- INTROSKÄRM (PROJEKTORLÄGE) -->
+    <section id="view-projector" class="hidden fixed inset-0 bg-stone-950 text-stone-100 z-50 flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
+      <div class="flex justify-between items-center w-full max-w-5xl mx-auto">
+        <span class="text-xs uppercase tracking-widest text-stone-500 font-semibold flex items-center gap-2">
+          <span>🕯️</span> Nya Munken • Introskärm
+        </span>
+        <button onclick="closeProjector()" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 text-sm font-semibold rounded-lg border border-stone-700 transition">
+          ✕ Stäng introskärm
+        </button>
+      </div>
+
+      <div class="my-auto max-w-3xl mx-auto text-center space-y-8 py-8">
+        <div class="relative w-16 h-24 mx-auto flex items-end justify-center">
+          <div class="w-6 h-12 bg-gradient-to-t from-stone-400 to-stone-200 rounded-t-sm shadow-md relative">
+            <div class="w-0.5 h-2 bg-stone-900 mx-auto -mt-2"></div>
+            <div class="absolute -top-8 left-1/2 -translate-x-1/2 w-6 h-10 bg-gradient-to-t from-amber-600 via-amber-400 to-yellow-100 rounded-full flame-anim"></div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h2 class="text-4xl sm:text-6xl font-serif font-bold text-stone-100">Förintelsens minnesdag</h2>
+          <p class="text-stone-400 text-base sm:text-xl uppercase tracking-widest">27 januari • Nya Munken</p>
+        </div>
+
+        <div id="projector-content" class="bg-stone-900/90 border border-stone-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl text-left">
+          <!-- Fylls dynamiskt av JS beroende på årskurs -->
+        </div>
+      </div>
+
+      <div class="w-full text-center"></div>
+    </section>
+
+  </main>
+
+  <!-- ADMIN MODAL -->
+  <div id="admin-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-stone-900 border border-stone-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-stone-800 pb-4">
+        <div>
+          <h3 class="text-xl font-bold text-stone-100 flex items-center gap-2"><span>⚙️</span> Administrera salar & länkar</h3>
+          <p class="text-xs text-stone-400">Ändringar sparas lokalt i webbläsaren.</p>
+        </div>
+        <button onclick="toggleAdminModal()" class="text-stone-400 hover:text-stone-100 text-lg">✕</button>
+      </div>
+
+      <div class="space-y-4">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-amber-400">Salar för klasser</h4>
+        <div id="admin-rooms-inputs" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs"></div>
+      </div>
+
+      <div class="space-y-4 pt-4 border-t border-stone-800">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-amber-400">Länkar & Resurser (URL)</h4>
+        <div id="admin-links-inputs" class="space-y-3 text-xs"></div>
+      </div>
+
+      <div class="pt-4 border-t border-stone-800 flex justify-between gap-3">
+        <button onclick="resetDefaults()" class="px-3 py-2 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs">Återställ grunddata</button>
+        <button onclick="saveAdminData()" class="px-5 py-2 rounded bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs shadow">Spara & Stäng</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaultData = {
+      rooms: {
+        '7A': '31*', '7B': '27*', '7C': '25*', '7D': '33*', '7E': '37*', '7F': '40*', '7G': '38*', '7H': '29*',
+        '8A': '35*', '8B': '39*', '8C': '36*', '8D': '17', '8E': '24*', '8F': '32', '8G': '20', '8H': '34',
+        '9A': '43', '9B': '42', '9C': 'fysiksalen', '9D': 'Kemisalen', '9E': '41', '9F': '26*', '9G': '28', '9H': 'biologisalen'
+      },
+      links: [
+        { id: 'intro_7', grade: 'ak7', title: 'Introfilm (kl. 09:00, 5 min)', url: '#' },
+        { id: 'pres_7', grade: 'ak7', title: 'Presentation: Vad var Förintelsen?', url: '#' },
+        { id: 'intro_8', grade: 'ak8', title: 'Introfilm (kl. 09:00, 5 min)', url: '#' },
+        { id: 'anne_8', grade: 'ak8', title: 'Exempelpresentation: Anne Frank', url: '#' },
+        { id: 'inst_8', grade: 'ak8', title: 'Elevinstruktion & Personporträtt', url: '#' },
+        { id: 'mall_8', grade: 'ak8', title: 'Mall för presentation (till Classroom)', url: '#' },
+        { id: 'film_9', grade: 'ak9', title: 'Filmvisning: Amrum', url: '#' },
+        { id: 'ref_9', grade: 'ak9', title: 'Diskussionsfrågor & Reflektion', url: '#' }
+      ]
+    };
+
+    let appData = JSON.parse(localStorage.getItem('minnesdag_nm_data')) || defaultData;
+
+    function renderRooms() {
+      ['ak7', 'ak8', 'ak9'].forEach(gr => {
+        const container = document.getElementById(`rooms-${gr}`);
+        if (!container) return;
+        container.innerHTML = '';
+        const prefix = gr === 'ak7' ? '7' : (gr === 'ak8' ? '8' : '9');
+        Object.keys(appData.rooms).filter(c => c.startsWith(prefix)).forEach(cls => {
+          const div = document.createElement('div');
+          div.className = 'bg-stone-900 border border-stone-800 p-2.5 rounded-lg flex justify-between items-center';
+          div.innerHTML = `<span class="font-bold text-stone-200 text-sm">${cls}</span><span class="text-amber-400 font-mono text-sm">${appData.rooms[cls]}</span>`;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    function renderLinks() {
+      ['ak7', 'ak8', 'ak9'].forEach(gr => {
+        const container = document.getElementById(`links-${gr}`);
+        if (!container) return;
+        container.innerHTML = '';
+        appData.links.filter(l => l.grade === gr).forEach(link => {
+          const a = document.createElement('a');
+          a.href = link.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.className = 'block p-4 rounded-xl bg-stone-900/90 border border-stone-800 hover:border-amber-500/60 hover:bg-stone-850 transition group';
+          a.innerHTML = `<div class="flex justify-between items-center"><span class="font-bold text-stone-200 group-hover:text-amber-300 text-[17px]">${link.title}</span><span class="text-stone-500 group-hover:text-amber-400">↗</span></div><p class="text-xs text-stone-400 mt-1 truncate">${link.url === '#' ? 'Länk ej inlagd ännu' : link.url}</p>`;
+          container.appendChild(a);
+        });
+      });
+    }
+
+    function navTo(viewId) {
+      ['view-home', 'view-ak7', 'view-ak8', 'view-ak9', 'view-projector'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) target.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    let activeProjectorGrade = null;
+    function openProjector(grade) {
+      activeProjectorGrade = grade;
+      const content = document.getElementById('projector-content');
+      const introLink = appData.links.find(l => l.grade === grade && l.id.startsWith('intro_'));
+      const introUrl = introLink ? introLink.url : '#';
+
+      if (grade === 'ak7') {
+        const presLink = appData.links.find(l => l.id === 'pres_7');
+        const presUrl = presLink ? presLink.url : '#';
+        content.innerHTML = `
+          <div class="space-y-4">
+            <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 7: Vad var Förintelsen?</h3>
+            <p class="text-stone-300 text-lg">Välkomna. Vi inleder minnesdagen med en 5 minuter lång introduktionsfilm och fortsätter därefter med dagens presentation och reflektion i klassrummet.</p>
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow flex items-center gap-2 text-base">
+                ▶ Starta introfilm (kl. 09:00, 5 min)
+              </a>
+              <a href="${presUrl}" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-xl border border-stone-700 transition shadow flex items-center gap-2 text-base">
+                📊 Öppna presentationen
+              </a>
+            </div>
+          </div>
+        `;
+      } else if (grade === 'ak8') {
+        content.innerHTML = `
+          <div class="space-y-4">
+            <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 8: Modiga personer under Förintelsen</h3>
+            <ul class="space-y-2 text-stone-300 text-base sm:text-lg">
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> <strong>kl. 09:00:</strong> Introfilm (5 min)</li>
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> Genomgång: Vem var Anne Frank?</li>
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> Personporträtt: Grupparbete om en modig person</li>
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> Redovisningar i basgrupper och reflektionsbrev</li>
+            </ul>
+            <div class="pt-2">
+              <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow inline-flex items-center gap-2 text-base">
+                ▶ Starta introfilm (kl. 09:00, 5 min)
+              </a>
+            </div>
+          </div>
+        `;
+      } else if (grade === 'ak9') {
+        const filmLink = appData.links.find(l => l.id === 'film_9');
+        const filmUrl = filmLink ? filmLink.url : '#';
+        content.innerHTML = `
+          <div class="space-y-4">
+            <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 9: Film & Reflektion</h3>
+            <ul class="space-y-2 text-stone-300 text-base sm:text-lg">
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> <strong>kl. 09:00–10:30:</strong> Filmvisning: "Amrum" (1 h 30 min)</li>
+              <li class="flex items-center gap-2"><span class="text-amber-500">•</span> <strong>kl. 10:30–11:00:</strong> Efterarbete och reflektion i klassrummet</li>
+            </ul>
+            <div class="pt-2">
+              <a href="${filmUrl}" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow inline-flex items-center gap-2 text-base">
+                🎬 Starta filmen "Amrum"
+              </a>
+            </div>
+          </div>
+        `;
+      }
+      document.getElementById('view-projector').classList.remove('hidden');
+    }
+
+    function closeProjector() {
+      document.getElementById('view-projector').classList.add('hidden');
+      if (activeProjectorGrade) navTo(activeProjectorGrade);
+    }
+
+    function toggleAdminModal() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) renderAdminInputs();
+    }
+
+    function renderAdminInputs() {
+      const roomsContainer = document.getElementById('admin-rooms-inputs');
+      roomsContainer.innerHTML = '';
+      Object.keys(appData.rooms).forEach(cls => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-1 bg-stone-950 p-1.5 rounded border border-stone-800';
+        div.innerHTML = `<label class="font-bold text-stone-300 w-7">${cls}</label><input type="text" id="adm-room-${cls}" value="${appData.rooms[cls]}" class="bg-stone-900 border border-stone-700 text-amber-300 rounded px-1.5 py-0.5 w-full text-center">`;
+        roomsContainer.appendChild(div);
+      });
+
+      const linksContainer = document.getElementById('admin-links-inputs');
+      linksContainer.innerHTML = '';
+      appData.links.forEach(l => {
+        const div = document.createElement('div');
+        div.className = 'bg-stone-950 p-2.5 rounded border border-stone-800 space-y-1';
+        div.innerHTML = `<div class="flex justify-between text-stone-300 font-semibold"><span>${l.title}</span><span class="text-stone-500 uppercase">${l.grade}</span></div><input type="text" id="adm-link-${l.id}" value="${l.url}" placeholder="https://..." class="w-full bg-stone-900 border border-stone-700 text-stone-200 rounded px-2 py-1 text-xs">`;
+        linksContainer.appendChild(div);
+      });
+    }
+
+    function saveAdminData() {
+      Object.keys(appData.rooms).forEach(cls => {
+        const el = document.getElementById(`adm-room-${cls}`);
+        if (el) appData.rooms[cls] = el.value.trim();
+      });
+      appData.links.forEach(l => {
+        const el = document.getElementById(`adm-link-${l.id}`);
+        if (el) l.url = el.value.trim() || '#';
+      });
+      localStorage.setItem('minnesdag_nm_data', JSON.stringify(appData));
+      renderRooms();
+      renderLinks();
+      toggleAdminModal();
+    }
+
+    function resetDefaults() {
+      if (confirm('Är du säker på att du vill återställa alla salar och länkar?')) {
+        appData = JSON.parse(JSON.stringify(defaultData));
+        localStorage.removeItem('minnesdag_nm_data');
+        renderAdminInputs();
+      }
+    }
+
+    renderRooms();
+    renderLinks();
+  </script>
+</body>
+</html>
