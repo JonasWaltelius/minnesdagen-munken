@@ -37,125 +37,109 @@
       }
     }
 
-    /* REALISTISKT VITT LJUS (INTEGRERAD MODELL) */
+    /* REALISTISKT KORTARE VITT LJUS MED MER FLADDRANDE LÅGA */
     .candle-container {
       position: relative;
-      width: 60px;
-      height: 300px;
+      width: 50px;
+      height: 170px;
       display: flex;
       flex-direction: column;
       align-items: center;
       flex-shrink: 0;
     }
 
-    /* Skalning för startsidan */
     .candle-header-scale {
-      transform: scale(0.38);
+      transform: scale(0.55);
       transform-origin: center center;
-      margin: -95px -12px;
+      margin: -35px -10px;
     }
     @media (min-width: 640px) {
       .candle-header-scale {
-        transform: scale(0.48);
-        margin: -80px -8px;
+        transform: scale(0.68);
+        margin: -25px -5px;
       }
     }
 
-    /* Skalning för projektorläget */
     .candle-projector-scale {
-      transform: scale(0.65);
+      transform: scale(0.62);
       transform-origin: center center;
-      margin: -50px auto;
+      margin: -20px 0;
     }
 
     .candle-body {
-      width: 50px;
-      height: 180px;
-      background: linear-gradient(to right, #e6e6e6, #ffffff 40%, #d9d9d9);
+      width: 44px;
+      height: 95px;
+      background: linear-gradient(to right, #dedede, #ffffff 40%, #cfcfcf);
       border-radius: 4px 4px 2px 2px;
-      box-shadow: inset 0 15px 20px rgba(255, 255, 255, 0.8),
-                  0 0 20px rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 12px 16px rgba(255, 255, 255, 0.85),
+                  0 0 18px rgba(255, 255, 255, 0.1);
       position: absolute;
       bottom: 0;
     }
 
     .wick {
       width: 3px;
-      height: 15px;
+      height: 14px;
       background-color: #222;
       position: absolute;
-      top: 92px;
+      bottom: 95px;
       border-radius: 1px;
     }
 
     .flame {
       position: absolute;
-      top: 40px;
-      width: 24px;
-      height: 60px;
+      bottom: 104px;
+      width: 22px;
+      height: 54px;
       border-radius: 50% 50% 35% 35% / 70% 70% 35% 35%;
-      background: radial-gradient(circle at 50% 80%, #ffffff 20%, #fbfbfb 60%, rgba(255,255,255,0) 100%);
-      box-shadow: 0 -4px 15px rgba(255, 255, 255, 0.6),
-                  0 -10px 30px rgba(255, 255, 255, 0.3),
-                  0 4px 20px rgba(255, 255, 255, 0.2);
+      background: radial-gradient(circle at 50% 80%, #ffffff 20%, #fffae8 55%, rgba(255,245,200,0) 100%);
+      box-shadow: 0 -4px 18px rgba(255, 230, 150, 0.8),
+                  0 -10px 30px rgba(251, 191, 36, 0.5),
+                  0 4px 20px rgba(245, 158, 11, 0.35);
       transform-origin: center bottom;
-      animation: flicker 4s ease-in-out infinite, sway 6s ease-in-out infinite;
-      filter: blur(0.5px);
+      animation: flickerMore 1.8s ease-in-out infinite alternate, swayMore 3.2s ease-in-out infinite;
+      filter: blur(0.4px);
     }
 
-    @keyframes flicker {
-      0%, 100% { 
-        transform: scale(1); 
+    @keyframes flickerMore {
+      0% { 
+        transform: scale(1) rotate(-1deg); 
         opacity: 0.95;
-        box-shadow: 0 -4px 15px rgba(255, 255, 255, 0.6);
+        box-shadow: 0 -4px 16px rgba(255, 230, 150, 0.75);
       }
-      5% { 
-        transform: scale(1.02, 0.98); 
+      20% { 
+        transform: scale(1.08, 0.93) rotate(2deg); 
         opacity: 1;
+        box-shadow: 0 -6px 24px rgba(251, 191, 36, 0.9);
       }
-      10% { 
-        transform: scale(0.97, 1.03); 
+      40% { 
+        transform: scale(0.92, 1.08) rotate(-1.5deg); 
+        opacity: 0.9;
+        box-shadow: 0 -3px 14px rgba(255, 210, 120, 0.65);
+      }
+      65% { 
+        transform: scale(1.05, 0.96) rotate(1.2deg); 
+        opacity: 0.98;
+        box-shadow: 0 -5px 22px rgba(251, 191, 36, 0.85);
+      }
+      85% { 
+        transform: scale(0.94, 1.04) rotate(-2deg); 
         opacity: 0.92;
       }
-      15% { 
-        transform: scale(1.01, 1); 
-        opacity: 0.98;
-        box-shadow: 0 -4px 18px rgba(255, 255, 255, 0.7);
-      }
-      25% { 
-        transform: scale(0.98, 1.01); 
-        opacity: 0.94;
-      }
-      32% { 
-        transform: scale(1.03, 0.97);
+      100% { 
+        transform: scale(1.03, 0.98) rotate(0.5deg); 
         opacity: 1;
-      }
-      45% { 
-        transform: scale(0.96, 1.02);
-        opacity: 0.91;
-      }
-      60% { 
-        transform: scale(1.01, 0.99);
-        opacity: 0.97;
-      }
-      75% { 
-        transform: scale(0.97, 1.04);
-        opacity: 0.93;
-      }
-      88% { 
-        transform: scale(1.02, 0.96);
-        opacity: 0.99;
+        box-shadow: 0 -5px 20px rgba(255, 230, 150, 0.85);
       }
     }
 
-    @keyframes sway {
-      0%, 100% { transform: rotate(0deg); }
-      12% { transform: rotate(1.5deg) skewX(1deg); }
-      28% { transform: rotate(-1deg) skewX(-0.5deg); }
-      42% { transform: rotate(2deg) skewX(1.5deg); }
-      55% { transform: rotate(-1.5deg) skewX(-1deg); }
-      70% { transform: rotate(1deg) skewX(0.5deg); }
-      82% { transform: rotate(-2deg) skewX(-1.5deg); }
+    @keyframes swayMore {
+      0%, 100% { transform: rotate(0deg) skewX(0deg); }
+      18% { transform: rotate(3deg) skewX(2.5deg); }
+      38% { transform: rotate(-2.5deg) skewX(-2deg); }
+      58% { transform: rotate(3.5deg) skewX(2.8deg); }
+      78% { transform: rotate(-3deg) skewX(-2.5deg); }
+      90% { transform: rotate(1.5deg) skewX(1deg); }
     }
   </style>
 </head>
@@ -190,11 +174,11 @@
     <!-- STARTSIDA -->
     <section id="view-home" class="fade-in space-y-10">
       <div class="text-center space-y-4 pt-4">
-        <div class="flex justify-center items-center gap-2 sm:gap-5 overflow-visible">
+        <div class="flex justify-center items-center gap-2 sm:gap-4 overflow-visible">
           <h1 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-wider title-jagged-style py-2">
             FÖRINTELSENS MINNESDAG
           </h1>
-          <!-- Integrerat vitt ljus (skalat) -->
+          <!-- Kortare vitt ljus på startsidan -->
           <div class="candle-container candle-header-scale select-none pointer-events-none">
             <div class="flame"></div>
             <div class="wick"></div>
@@ -456,36 +440,42 @@
       </div>
     </section>
 
-    <!-- VISNING PÅ PROJEKTOR (PROJEKTORLÄGE) -->
-    <section id="view-projector" class="hidden fixed inset-0 bg-stone-950 text-stone-100 z-50 flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
-      <div class="flex justify-between items-center w-full max-w-5xl mx-auto">
+    <!-- VISNING PÅ PROJEKTOR (HELSKÄRM UTAN SCROLL) -->
+    <section id="view-projector" class="hidden fixed inset-0 bg-stone-950 text-stone-100 z-50 flex flex-col justify-between p-4 sm:p-6 h-screen w-screen overflow-hidden">
+      <!-- Topprad i projektorläge -->
+      <div class="flex justify-between items-center w-full max-w-5xl mx-auto shrink-0 pb-2 border-b border-stone-800/80">
         <span class="text-xs uppercase tracking-widest text-stone-500 font-semibold flex items-center gap-2">
           <span>🕯️</span> Nya Munken • Visning på projektor
         </span>
-        <button onclick="closeProjector()" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 text-sm font-semibold rounded-lg border border-stone-700 transition">
+        <button onclick="closeProjector()" class="px-3.5 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs sm:text-sm font-semibold rounded-lg border border-stone-700 transition shadow">
           ✕ Stäng visningsläge
         </button>
       </div>
 
-      <div class="my-auto max-w-3xl mx-auto text-center space-y-6 py-6 w-full">
-        <!-- Vitt ljus i projektorstorlek -->
-        <div class="candle-container candle-projector-scale select-none pointer-events-none">
-          <div class="flame"></div>
-          <div class="wick"></div>
-          <div class="candle-body"></div>
+      <!-- Huvudinnehåll i ett kompakt, scrollfritt block -->
+      <div class="my-auto max-w-4xl w-full mx-auto flex flex-col items-center justify-center space-y-4 sm:space-y-6">
+        
+        <!-- Rubrik och ljus PARALLELLT på samma rad -->
+        <div class="flex items-center justify-center gap-3 sm:gap-6 overflow-visible w-full">
+          <div class="text-center sm:text-left space-y-1">
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-black title-jagged-style leading-tight">FÖRINTELSENS MINNESDAG</h2>
+            <p class="text-stone-400 text-xs sm:text-base uppercase tracking-widest font-semibold">27 januari • Nya Munken</p>
+          </div>
+          <!-- Ljuset parallellt bredvid -->
+          <div class="candle-container candle-projector-scale select-none pointer-events-none shrink-0">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="candle-body"></div>
+          </div>
         </div>
 
-        <div class="space-y-2">
-          <h2 class="text-3xl sm:text-5xl font-black title-jagged-style">FÖRINTELSENS MINNESDAG</h2>
-          <p class="text-stone-400 text-base sm:text-xl uppercase tracking-widest">27 januari • Nya Munken</p>
-        </div>
-
-        <div id="projector-content" class="bg-stone-900/90 border border-stone-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl text-left">
+        <!-- Innehållsrutan anpassad för skärmen -->
+        <div id="projector-content" class="bg-stone-900/95 border border-stone-800 rounded-2xl p-4 sm:p-6 shadow-2xl text-left w-full">
           <!-- Fylls dynamiskt av JS -->
         </div>
       </div>
 
-      <div class="w-full text-center"></div>
+      <div class="shrink-0 text-center"></div>
     </section>
 
   </main>
@@ -592,45 +582,50 @@
       activeProjectorGrade = grade;
       const content = document.getElementById('projector-content');
 
+      // Aktivera helskärm för iPad, Chromebook och PC
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen().catch(() => {});
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen();
+      }
+
       if (grade === 'ak7') {
         const introUrl = getLinkUrl('intro_7');
         const presUrl = getLinkUrl('pres_7');
         content.innerHTML = `
-          <div class="space-y-6">
-            <div class="border-b border-stone-800 pb-3">
-              <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 7: Vad var Förintelsen?</h3>
-              <p class="text-stone-400 text-sm mt-1">Följ stegen nedan under lektionspasset kl. 09:00–11:00</p>
+          <div class="space-y-3 sm:space-y-4">
+            <div class="border-b border-stone-800 pb-2">
+              <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 7: Vad var Förintelsen?</h3>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
-                  <p class="text-stone-200 font-semibold text-lg">Gemensam introduktionsfilm</p>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Gemensam introduktionsfilm</p>
                 </div>
-                <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow flex items-center gap-2 text-sm shrink-0">
-                  ▶ Starta introfilm
+                <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                  ▶ Starta film
                 </a>
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 1,5 h</span>
-                  <p class="text-stone-200 font-semibold text-lg">Genomgång & diskussion: Vad var Förintelsen?</p>
-                  <p class="text-stone-400 text-xs mt-0.5">Innehåller fakta, filmer, Nürnberglagarna och diskussionsfrågor</p>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 1,5 h</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Genomgång & diskussion: Vad var Förintelsen?</p>
                 </div>
-                <a href="${presUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-xl border border-stone-700 transition shadow flex items-center gap-2 text-sm shrink-0">
-                  📊 Öppna presentationen
+                <a href="${presUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-lg border border-stone-700 transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                  📊 Öppna presentation
                 </a>
               </div>
 
               <!-- Steg 3 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 3 • Avslutning</span>
-                <p class="text-stone-200 font-semibold text-lg">Knyta ihop säcken (klart senast kl. 11:00)</p>
-                <p class="text-stone-400 text-sm mt-0.5">Avsluta passet i klassrummet inför ordinarie lektionsstart kl. 11:10.</p>
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 3 • Avslutning</span>
+                <p class="text-stone-200 font-semibold text-base sm:text-lg">Knyta ihop säcken (klart senast kl. 11:00)</p>
               </div>
             </div>
           </div>
@@ -640,54 +635,49 @@
         const filmAnneUrl = getLinkUrl('film_anne_8');
         const anneUrl = getLinkUrl('anne_8');
         content.innerHTML = `
-          <div class="space-y-6">
-            <div class="border-b border-stone-800 pb-3">
-              <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 8: Modiga personer under Förintelsen</h3>
-              <p class="text-stone-400 text-sm mt-1">Följ stegen nedan under lektionspasset kl. 09:00–11:00</p>
+          <div class="space-y-3 sm:space-y-4">
+            <div class="border-b border-stone-800 pb-2">
+              <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 8: Modiga personer under Förintelsen</h3>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
-                  <p class="text-stone-200 font-semibold text-lg">Gemensam introduktionsfilm</p>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Gemensam introduktionsfilm</p>
                 </div>
-                <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow flex items-center gap-2 text-sm shrink-0">
-                  ▶ Starta introfilm
+                <a href="${introUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                  ▶ Starta film
                 </a>
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 space-y-3">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                  <div>
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 15 min</span>
-                    <p class="text-stone-200 font-semibold text-lg">Vem var Anne Frank? (Klipp & Exempelpresentation)</p>
-                  </div>
-                  <div class="flex flex-wrap gap-2 shrink-0">
-                    <a href="${filmAnneUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow flex items-center gap-1.5 text-xs">
-                      🎬 Filmklipp Anne Frank (6 min)
-                    </a>
-                    <a href="${anneUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-xl border border-stone-700 transition shadow flex items-center gap-1.5 text-xs">
-                      📊 Exempelpresentation
-                    </a>
-                  </div>
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 15 min</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Vem var Anne Frank?</p>
+                </div>
+                <div class="flex gap-2 shrink-0">
+                  <a href="${filmAnneUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1 text-xs">
+                    🎬 Filmklipp (6 min)
+                  </a>
+                  <a href="${anneUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-lg border border-stone-700 transition shadow flex items-center gap-1 text-xs">
+                    📊 Exempelpresentation
+                  </a>
                 </div>
               </div>
 
               <!-- Steg 3 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 3 • ca 45 min</span>
-                <p class="text-stone-200 font-semibold text-lg">Personporträtt: Grupparbete i basgrupper</p>
-                <p class="text-stone-400 text-sm mt-0.5">Eleverna arbetar i tilldelad mall och instruktion via Google Classroom.</p>
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 3 • ca 45 min</span>
+                <p class="text-stone-200 font-semibold text-base sm:text-lg">Personporträtt: Grupparbete i basgrupper</p>
               </div>
 
               <!-- Steg 4 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 4 • ca 30–40 min</span>
-                <p class="text-stone-200 font-semibold text-lg">Redovisningar & Reflektion</p>
-                <p class="text-stone-400 text-sm mt-0.5">Presentation för klassen/basgrupper samt avslutande reflektion kring mod.</p>
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 4 • ca 30–40 min</span>
+                <p class="text-stone-200 font-semibold text-base sm:text-lg">Redovisningar & Reflektion (klart kl. 11:00)</p>
               </div>
             </div>
           </div>
@@ -696,33 +686,31 @@
         const filmUrl = getLinkUrl('film_9');
         const refUrl = getLinkUrl('ref_9');
         content.innerHTML = `
-          <div class="space-y-6">
-            <div class="border-b border-stone-800 pb-3">
-              <h3 class="text-2xl sm:text-3xl font-bold text-amber-300">Årskurs 9: Film & Reflektion</h3>
-              <p class="text-stone-400 text-sm mt-1">Följ stegen nedan under lektionspasset kl. 09:00–11:00</p>
+          <div class="space-y-3 sm:space-y-4">
+            <div class="border-b border-stone-800 pb-2">
+              <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 9: Film & Reflektion</h3>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00–10:30 (1 h 30 min)</span>
-                  <p class="text-stone-200 font-semibold text-lg">Filmvisning: Amrum</p>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00–10:30 (1 h 30 min)</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Filmvisning: Amrum</p>
                 </div>
-                <a href="${filmUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl transition shadow flex items-center gap-2 text-sm shrink-0">
-                  🎬 Starta filmen Amrum
+                <a href="${filmUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                  🎬 Starta filmen
                 </a>
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-4 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Steg 2 • kl. 10:30–11:00 (30 min)</span>
-                  <p class="text-stone-200 font-semibold text-lg">Efterarbete & diskussionsfrågor</p>
-                  <p class="text-stone-400 text-xs mt-0.5">Samtal i basgrupper och helklass kring hur historien gestaltas</p>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • kl. 10:30–11:00 (30 min)</span>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Efterarbete & diskussionsfrågor</p>
                 </div>
-                <a href="${refUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-xl border border-stone-700 transition shadow flex items-center gap-2 text-sm shrink-0">
-                  📄 Diskussionsunderlag
+                <a href="${refUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-lg border border-stone-700 transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                  📄 Diskussionsfrågor
                 </a>
               </div>
             </div>
@@ -733,6 +721,13 @@
     }
 
     function closeProjector() {
+      // Avsluta helskärm om aktiv
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+
       document.getElementById('view-projector').classList.add('hidden');
       if (activeProjectorGrade) navTo(activeProjectorGrade);
     }
