@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Förintelsens minnesdag Nya Munken</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800;9..144,900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .fade-in {
@@ -15,25 +18,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3D Poster-typografi i versaler */
+    /* Modern high-contrast serif i stil med bifogad bild, med bibehållen färgskala */
     .title-jagged-style {
+      font-family: 'Fraunces', Georgia, serif;
       font-weight: 900;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       background: linear-gradient(180deg, #ff9e1b 0%, #f95316 55%, #dc2626 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 1.2px #fde047;
+      -webkit-text-stroke: 0.8px #fde047;
       filter: drop-shadow(2px 2px 0px #7c1a08) 
               drop-shadow(4px 4px 0px #1c0602) 
-              drop-shadow(6px 6px 1px #000000);
+              drop-shadow(6px 6px 2px rgba(0, 0, 0, 0.85));
     }
     @media (min-width: 640px) {
       .title-jagged-style {
-        -webkit-text-stroke: 1.8px #fde047;
+        -webkit-text-stroke: 1.2px #fde047;
         filter: drop-shadow(3px 3px 0px #7c1a08) 
                 drop-shadow(5px 5px 0px #1c0602) 
-                drop-shadow(7px 7px 2px #000000);
+                drop-shadow(7px 7px 3px rgba(0, 0, 0, 0.85));
       }
     }
 
@@ -72,7 +76,7 @@
       background: linear-gradient(to right, #dedede, #ffffff 40%, #cfcfcf);
       border-radius: 4px 4px 2px 2px;
       box-shadow: inset 0 12px 16px rgba(255, 255, 255, 0.85),
-                  0 0 18px rgba(255, 255, 255, 0.1);
+                  0 0 18px rgba(255, 255, 255, 0.15);
       position: absolute;
       bottom: 0;
     }
@@ -141,11 +145,58 @@
       78% { transform: rotate(-3deg) skewX(-2.5deg); }
       90% { transform: rotate(1.5deg) skewX(1deg); }
     }
+
+    /* Ljust tema (när Dark Mode stängs av) */
+    body.light-theme {
+      background-color: #fafaf9 !important;
+      color: #1c1917 !important;
+    }
+    body.light-theme header {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      border-color: #e7e5e4 !important;
+    }
+    body.light-theme .theme-card {
+      background-color: #ffffff !important;
+      border-color: #d6d3d1 !important;
+      color: #1c1917 !important;
+    }
+    body.light-theme .theme-card:hover {
+      border-color: #d97706 !important;
+      background-color: #fffbeb !important;
+    }
+    body.light-theme .theme-text-main {
+      color: #1c1917 !important;
+    }
+    body.light-theme .theme-text-muted {
+      color: #44403c !important;
+    }
+    body.light-theme .theme-heading-amber {
+      color: #b45309 !important;
+    }
+    body.light-theme .goal-box {
+      background-color: #fef3c7 !important;
+      border-color: #f59e0b !important;
+    }
+    body.light-theme .classroom-note {
+      background-color: #f5f5f4 !important;
+      border-color: #d6d3d1 !important;
+      color: #292524 !important;
+    }
+    body.light-theme .room-badge {
+      background-color: #ffffff !important;
+      border-color: #d6d3d1 !important;
+    }
+    body.light-theme .room-badge span:first-child {
+      color: #1c1917 !important;
+    }
+    body.light-theme .room-badge span:last-child {
+      color: #b45309 !important;
+    }
   </style>
 </head>
-<body class="bg-stone-950 text-stone-100 min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white flex flex-col justify-between">
+<body class="bg-stone-950 text-stone-100 min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white flex flex-col justify-between transition-colors duration-200">
 
-  <!-- Header med diskret årskursnavigering och Admin -->
+  <!-- Header med diskret årskursnavigering, Dark Mode-knapp och Admin -->
   <header class="border-b border-stone-800/80 bg-stone-900/60 backdrop-blur sticky top-0 z-30">
     <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center gap-4 sm:gap-6">
@@ -161,8 +212,11 @@
           <button onclick="navTo('ak9')" class="hover:text-stone-300 transition px-1 py-0.5">Åk 9</button>
         </nav>
       </div>
-      <div class="flex items-center gap-3">
-        <button onclick="toggleAdminModal()" class="text-xs px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition flex items-center gap-1.5 shadow-sm">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="text-xs px-2.5 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition flex items-center gap-1.5 shadow-sm" title="Växla mellan mörkt och ljust läge">
+          <span id="theme-icon">☀️</span> <span id="theme-label" class="hidden sm:inline">Ljust läge</span>
+        </button>
+        <button onclick="openAdminWithPin()" class="text-xs px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white border border-stone-700 transition flex items-center gap-1.5 shadow-sm">
           <span>⚙️</span> (Admin)
         </button>
       </div>
@@ -185,23 +239,23 @@
             <div class="candle-body"></div>
           </div>
         </div>
-        <p class="text-stone-400 text-sm sm:text-base tracking-widest uppercase font-semibold">
+        <p class="text-stone-400 theme-text-muted text-sm sm:text-base tracking-widest uppercase font-semibold">
           Onsdag 27 januari 2027
         </p>
       </div>
 
       <div class="max-w-3xl mx-auto text-center">
-        <p class="font-bold text-base sm:text-lg text-stone-300 leading-relaxed">
+        <p class="font-bold text-base sm:text-lg text-stone-300 theme-text-muted leading-relaxed">
           Den 27 januari samlas människor över hela världen i en årlig manifestation. Det är den internationella minnesdagen för Förintelsens offer – samma datum som förintelselägret Auschwitz-Birkenau befriades av Röda Armén 1945.
         </p>
       </div>
 
       <!-- Informationsruta -->
-      <div class="max-w-4xl mx-auto bg-stone-900/90 border border-stone-700/80 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
-        <h2 class="text-xl sm:text-2xl font-bold text-amber-300">
+      <div class="max-w-4xl mx-auto bg-stone-900/90 theme-card border border-stone-700/80 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
+        <h2 class="text-xl sm:text-2xl font-bold text-amber-300 theme-heading-amber">
           Minnesdagen på Nya Munken uppmärksammas kl. 09:00–11:00.
         </h2>
-        <ul class="space-y-3 text-[17px] text-stone-300 leading-relaxed">
+        <ul class="space-y-3 text-[17px] text-stone-300 theme-text-muted leading-relaxed">
           <li class="flex items-start gap-2.5">
             <span class="text-amber-500 font-bold">•</span>
             <span>Samtliga elever börjar med ordinarie lektioner på morgonen (om klassen har det schemalagt). Lektionerna bryts <strong>kl. 08:50</strong> för samling i klassrummen inför uppstart <strong>kl. 09:00</strong>.</span>
@@ -220,33 +274,33 @@
       <!-- Korten för Åk 7, 8 och 9 -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
         <!-- År 7 -->
-        <button onclick="navTo('ak7')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+        <button onclick="navTo('ak7')" class="group text-left bg-stone-900/70 hover:bg-stone-850 theme-card p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 7</h3>
-            <p class="text-stone-400 text-sm">Vad var Förintelsen?</p>
+            <h3 class="text-2xl font-bold text-stone-100 theme-text-main group-hover:text-amber-300 transition">Årskurs 7</h3>
+            <p class="text-stone-400 theme-text-muted text-sm">Vad var Förintelsen?</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
           </div>
-          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+          <span class="mt-6 text-sm text-stone-400 theme-text-muted group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
         </button>
 
         <!-- År 8 -->
-        <button onclick="navTo('ak8')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+        <button onclick="navTo('ak8')" class="group text-left bg-stone-900/70 hover:bg-stone-850 theme-card p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 8</h3>
-            <p class="text-stone-400 text-sm">Modiga personer & Redovisning</p>
+            <h3 class="text-2xl font-bold text-stone-100 theme-text-main group-hover:text-amber-300 transition">Årskurs 8</h3>
+            <p class="text-stone-400 theme-text-muted text-sm">Modiga personer & Redovisning</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
           </div>
-          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+          <span class="mt-6 text-sm text-stone-400 theme-text-muted group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
         </button>
 
         <!-- År 9 -->
-        <button onclick="navTo('ak9')" class="group text-left bg-stone-900/70 hover:bg-stone-850 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
+        <button onclick="navTo('ak9')" class="group text-left bg-stone-900/70 hover:bg-stone-850 theme-card p-6 rounded-2xl border border-stone-800 hover:border-amber-500/60 transition shadow-lg flex flex-col justify-between">
           <div class="space-y-3">
-            <h3 class="text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition">Årskurs 9</h3>
-            <p class="text-stone-400 text-sm">Filmvisning & Efterarbete</p>
+            <h3 class="text-2xl font-bold text-stone-100 theme-text-main group-hover:text-amber-300 transition">Årskurs 9</h3>
+            <p class="text-stone-400 theme-text-muted text-sm">Filmvisning & Efterarbete</p>
             <p class="text-xs font-semibold text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2.5 py-1 rounded inline-block">Pass: kl. 09:00–11:00</p>
           </div>
-          <span class="mt-6 text-sm text-stone-400 group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
+          <span class="mt-6 text-sm text-stone-400 theme-text-muted group-hover:text-stone-200 font-medium flex items-center gap-1">Öppna instruktioner & salar →</span>
         </button>
       </div>
     </section>
@@ -254,60 +308,61 @@
     <!-- ÅRSKURS 7 -->
     <section id="view-ak7" class="hidden fade-in space-y-8">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
-        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="navTo('home')" class="text-sm text-stone-400 theme-text-muted hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
         <button onclick="openProjector('ak7')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
           <span>📽️</span> Visning på projektor
         </button>
       </div>
 
       <div class="space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 7</h2>
-        <p class="text-amber-400 font-medium">Tema: Vad var Förintelsen? • Pass: kl. 09:00–11:00</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 theme-text-main font-serif">Årskurs 7</h2>
+        <p class="text-amber-400 theme-heading-amber font-medium">Tema: Vad var Förintelsen? • Pass: kl. 09:00–11:00</p>
       </div>
 
-      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
-        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Få förståelse för vad Förintelsen var utifrån frågorna vem, hur, när, var och varför.</p>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Presentation som innehåller genomgång, filmer och diskussioner.</p>
-        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+      <!-- Målruta med särskiljande bakgrundsfärg -->
+      <div class="goal-box bg-amber-950/35 border border-amber-700/60 p-5 rounded-xl space-y-2 shadow-md">
+        <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Få förståelse för vad Förintelsen var utifrån frågorna vem, hur, när, var och varför.</p>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Presentation som innehåller genomgång, filmer och diskussioner.</p>
+        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
-        <div class="space-y-4 text-[17px] text-stone-300">
-          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 text-sm font-medium">
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300 theme-text-muted">
+          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 theme-heading-amber text-sm font-medium">
             Läs in dig på upplägget nedan. På minnesdagen följer du upplägget som ligger under <strong>Visning på projektor</strong>.
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Start kl. 09:00: Introfilm (5 min)</p>
-            <p class="pl-4 text-stone-300">Sätt igång introfilmen (som finns länkad längst ner på sidan och i projektorläget) via projektorn.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Start kl. 09:00: Introfilm (5 min)</p>
+            <p class="pl-4">Sätt igång introfilmen (som finns länkad längst ner på sidan och i projektorläget) via projektorn.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Presentation</p>
-            <p class="pl-4 text-stone-300">Öppna presentationen och gå igenom bild för bild. Allt du ska säga och göra finns i presentationen.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Presentation</p>
+            <p class="pl-4">Öppna presentationen och gå igenom bild för bild. Allt du ska säga och göra finns i presentationen.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Frågor i basgrupp och helklass</p>
-            <p class="pl-4 text-stone-300">Frågorna till filmen i presentationen besvaras i basgruppen och lyfts sedan i helklass muntligt eller på tavlan.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Frågor i basgrupp och helklass</p>
+            <p class="pl-4">Frågorna till filmen i presentationen besvaras i basgruppen och lyfts sedan i helklass muntligt eller på tavlan.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Övning om Nürnberglagarna</p>
-            <p class="pl-4 text-stone-300">Eleverna diskuterar och argumenterar om lagarna som skärmade av den judiska befolkningen från samhället.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Övning om Nürnberglagarna</p>
+            <p class="pl-4">Eleverna diskuterar och argumenterar om lagarna som skärmade av den judiska befolkningen från samhället.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Avslutning och anpassning</p>
-            <p class="pl-4 text-stone-300">Passet beräknas ta ca 1,5 h utan rast. Avsluta med den anpassningsbara övningen "Knyta ihop säcken" så ni är klara till kl. 11:00.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Avslutning och anpassning</p>
+            <p class="pl-4">Passet beräknas ta ca 1,5 h utan rast. Avsluta med den anpassningsbara övningen "Knyta ihop säcken" så ni är klara till kl. 11:00.</p>
           </div>
         </div>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Klassrum</h3>
         <div id="rooms-ak7" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
       </div>
 
       <div class="space-y-4 pt-4 border-t border-stone-800">
-        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <h3 class="text-xl font-bold text-amber-300 theme-heading-amber">Länkar & Material</h3>
         <div id="links-ak7" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
       </div>
     </section>
@@ -315,74 +370,74 @@
     <!-- ÅRSKURS 8 -->
     <section id="view-ak8" class="hidden fade-in space-y-8">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
-        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="navTo('home')" class="text-sm text-stone-400 theme-text-muted hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
         <button onclick="openProjector('ak8')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
           <span>📽️</span> Visning på projektor
         </button>
       </div>
 
       <div class="space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 8</h2>
-        <p class="text-amber-400 font-medium">Tema: Modiga personer under Förintelsen • Pass: kl. 09:00–11:00</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 theme-text-main font-serif">Årskurs 8</h2>
+        <p class="text-amber-400 theme-heading-amber font-medium">Tema: Modiga personer under Förintelsen • Pass: kl. 09:00–11:00</p>
       </div>
 
-      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
-        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Få kännedom om viktiga personer under Förintelsen och hur enskilda personer kan påverka.</p>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Läsa och sammanfatta text, skapa en presentation samt presentera denna för klassen.</p>
-        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+      <!-- Målruta med särskiljande bakgrundsfärg -->
+      <div class="goal-box bg-amber-950/35 border border-amber-700/60 p-5 rounded-xl space-y-2 shadow-md">
+        <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Få kännedom om viktiga personer under Förintelsen och hur enskilda personer kan påverka.</p>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Läsa och sammanfatta text, skapa en presentation samt presentera denna för klassen.</p>
+        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
-        <div class="space-y-4 text-[17px] text-stone-300">
-          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 text-sm font-medium">
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300 theme-text-muted">
+          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 theme-heading-amber text-sm font-medium">
             Läs in dig på upplägget nedan. På minnesdagen följer du upplägget som ligger under <strong>Visning på projektor</strong>.
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Start kl. 09:00: Introfilm (5 min)</p>
-            <p class="pl-4 text-stone-300">Sätt igång introfilmen (som finns länkad längst ner på sidan och i projektorläget) via projektorn.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Start kl. 09:00: Introfilm (5 min)</p>
+            <p class="pl-4">Sätt igång introfilmen (som finns länkad längst ner på sidan och i projektorläget) via projektorn.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Innan passet</p>
-            <div class="pl-4 text-stone-300 space-y-2">
+            <p class="font-bold text-stone-100 theme-text-main">• Innan passet</p>
+            <div class="pl-4 space-y-2">
               <p>Mentorer lägger upp följande på Google Classroom:</p>
-              <ol class="list-decimal list-inside space-y-0.5 text-stone-200">
-                <li>personporträtt,</li>
-                <li>mall och</li>
-                <li>elevinstruktion.</li>
+              <ol class="list-decimal list-inside space-y-0.5 text-stone-200 theme-text-main">
+                <li>Elevinstruktion & personporträtt,</li>
+                <li>Mall för presentation.</li>
               </ol>
-              <div class="mt-3 p-3 bg-stone-950/80 border border-stone-800 rounded-lg text-sm text-stone-300">
-                <span class="font-bold text-amber-400">Gör så här i Classroom:</span> Öppna länkarna längst ner på sidan och bifoga i en ny uppgift. Sätt inställningen på <em>"Gör en kopia för varje elev"</em> på presentationsmallen så varje grupp får ett eget exemplar.
+              <div class="classroom-note mt-3 p-3 bg-stone-950/80 border border-stone-800 rounded-lg text-sm text-stone-300">
+                <span class="font-bold text-amber-400 theme-heading-amber">Gör så här i Classroom:</span> Öppna länkarna längst ner på sidan och bifoga i en ny uppgift. Säkerställ att det går att redigera i <strong>Mallen för presentation</strong> (välj t.ex. <em>"Gör en kopia för varje elev"</em>), men att eleverna inte kan redigera i <strong>Elevinstruktionen</strong> (välj <em>"Elever kan visa filen"</em>).
               </div>
             </div>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Genomgång Anne Frank (ca 15 min)</p>
-            <p class="pl-4 text-stone-300">Kolla på filmklippet om Anne Frank (6 min) och gå igenom exempelpresentationen som mentor lagt upp.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Genomgång Anne Frank (ca 15 min)</p>
+            <p class="pl-4">Kolla på filmklippet om Anne Frank (6 min) och gå igenom exempelpresentationen som mentor lagt upp.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Arbete i basgrupper (ca 45 min)</p>
-            <p class="pl-4 text-stone-300">Eleverna läser faktablad om sin tilldelade person och sammanställer text och bild i sin mall.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Arbete i basgrupper (ca 45 min)</p>
+            <p class="pl-4">Eleverna läser faktablad om sin tilldelade person och sammanställer text och bild i sin mall.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Presentationer (ca 30–40 min)</p>
-            <p class="pl-4 text-stone-300">Basgrupperna presenterar sina personporträtt för varandra så alla får del av olika öden.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Presentationer (ca 30–40 min)</p>
+            <p class="pl-4">Basgrupperna presenterar sina personporträtt för varandra så alla får del av olika öden.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Reflektioner och avslutning</p>
-            <p class="pl-4 text-stone-300">Gemensam reflektion och diskussion om mod. Som en avslutande uppgift kan eleverna skriva ett brev till en person de undersökt och uttrycka vad de beundrade med deras handlingar. Detta för att uppmuntra personlig reflektion och empati.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Reflektioner och avslutning</p>
+            <p class="pl-4">Gemensam reflektion och diskussion om mod. Som en avslutande uppgift kan eleverna skriva ett brev till en person de undersökt och uttrycka vad de beundrade med deras handlingar. Detta för att uppmuntra personlig reflektion och empati.</p>
           </div>
         </div>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Klassrum</h3>
         <div id="rooms-ak8" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
       </div>
 
       <div class="space-y-4 pt-4 border-t border-stone-800">
-        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <h3 class="text-xl font-bold text-amber-300 theme-heading-amber">Länkar & Material</h3>
         <div id="links-ak8" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
       </div>
     </section>
@@ -390,52 +445,53 @@
     <!-- ÅRSKURS 9 -->
     <section id="view-ak9" class="hidden fade-in space-y-8">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-stone-800 pb-4">
-        <button onclick="navTo('home')" class="text-sm text-stone-400 hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
+        <button onclick="navTo('home')" class="text-sm text-stone-400 theme-text-muted hover:text-stone-100 flex items-center gap-1">← Tillbaka till översikt</button>
         <button onclick="openProjector('ak9')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition shadow flex items-center gap-2">
           <span>📽️</span> Visning på projektor
         </button>
       </div>
 
       <div class="space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 font-serif">Årskurs 9</h2>
-        <p class="text-amber-400 font-medium">Tema: Film & Reflektion • Pass: kl. 09:00–11:00</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-stone-100 theme-text-main font-serif">Årskurs 9</h2>
+        <p class="text-amber-400 theme-heading-amber font-medium">Tema: Film & Reflektion • Pass: kl. 09:00–11:00</p>
       </div>
 
-      <div class="bg-stone-900/80 border border-stone-800 p-5 rounded-xl space-y-2">
-        <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att lära:</strong> Hur förintelsen visas på film och hur vi kan tänka kring detta.</p>
-        <p class="text-[17px] text-stone-200 leading-relaxed"><strong>Att göra:</strong> Se film och reflektera kring denna.</p>
-        <p class="text-xs text-amber-400/90 pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+      <!-- Målruta med särskiljande bakgrundsfärg -->
+      <div class="goal-box bg-amber-950/35 border border-amber-700/60 p-5 rounded-xl space-y-2 shadow-md">
+        <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Hur förintelsen visas på film och hur vi kan tänka kring detta.</p>
+        <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Se film och reflektera kring denna.</p>
+        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Tillvägagångssätt för mentorer</h3>
-        <div class="space-y-4 text-[17px] text-stone-300">
-          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 text-sm font-medium">
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Tillvägagångssätt för mentorer</h3>
+        <div class="space-y-4 text-[17px] text-stone-300 theme-text-muted">
+          <div class="p-3 bg-amber-950/30 border border-amber-900/40 rounded-xl text-amber-200 theme-heading-amber text-sm font-medium">
             Läs in dig på upplägget nedan. På minnesdagen följer du upplägget som ligger under <strong>Visning på projektor</strong>.
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Filmvisning (kl. 09:00–10:30)</p>
-            <p class="pl-4 text-stone-300">Eleverna ser filmen "Amrum" (1 h 30 min) i klassrummet via projektor.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Filmvisning (kl. 09:00–10:30)</p>
+            <p class="pl-4">Eleverna ser filmen "Amrum" (1 h 30 min) i klassrummet via projektor.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Efterarbete & reflektion (kl. 10:30–11:00)</p>
-            <p class="pl-4 text-stone-300">Samtal i basgrupper och helklass kring filmens frågeställningar och hur historien gestaltas.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Efterarbete & reflektion (kl. 10:30–11:00)</p>
+            <p class="pl-4">Samtal i basgrupper och helklass kring filmens frågeställningar och hur historien gestaltas.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100">• Avrundning</p>
-            <p class="pl-4 text-stone-300">Passet avslutas kl. 11:00 inför återgång till ordinarie lektionsschema från kl. 11:10.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Avrundning</p>
+            <p class="pl-4">Passet avslutas kl. 11:00 inför återgång till ordinarie lektionsschema från kl. 11:10.</p>
           </div>
         </div>
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-xl font-bold text-stone-200">Klassrum & Salar</h3>
+        <h3 class="text-xl font-bold text-stone-200 theme-text-main">Klassrum</h3>
         <div id="rooms-ak9" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
       </div>
 
       <div class="space-y-4 pt-4 border-t border-stone-800">
-        <h3 class="text-xl font-bold text-amber-300">Länkar & Material</h3>
+        <h3 class="text-xl font-bold text-amber-300 theme-heading-amber">Länkar & Material</h3>
         <div id="links-ak9" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
       </div>
     </section>
@@ -480,13 +536,13 @@
 
   </main>
 
-  <!-- ADMIN MODAL -->
+  <!-- ADMIN MODAL (Kräver kod 6768) -->
   <div id="admin-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-stone-900 border border-stone-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
+    <div class="bg-stone-900 border border-stone-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl text-stone-100">
       <div class="flex justify-between items-center border-b border-stone-800 pb-4">
         <div>
           <h3 class="text-xl font-bold text-stone-100 flex items-center gap-2"><span>⚙️</span> Administrera salar & länkar</h3>
-          <p class="text-xs text-stone-400">Ändringar sparas lokalt i webbläsaren.</p>
+          <p class="text-xs text-stone-400">Ändringar i denna panel sparas lokalt i webbläsaren.</p>
         </div>
         <button onclick="toggleAdminModal()" class="text-stone-400 hover:text-stone-100 text-lg">✕</button>
       </div>
@@ -509,6 +565,8 @@
   </div>
 
   <script>
+    const ADMIN_PIN = '6768';
+
     const defaultData = {
       rooms: {
         '7A': '31*', '7B': '27*', '7C': '25*', '7D': '33*', '7E': '37*', '7F': '40*', '7G': '38*', '7H': '29*',
@@ -523,12 +581,13 @@
         { id: 'anne_8', grade: 'ak8', title: 'Exempelpresentation: Anne Frank', url: 'https://docs.google.com/presentation/d/16uBc5joPCbuszKrYApTHC-5xufgPDN8Cs9FdMhbi67E/edit?usp=drivesdk' },
         { id: 'inst_8', grade: 'ak8', title: 'Elevinstruktion & Personporträtt', url: 'https://docs.google.com/document/d/1shPtsbkMMyJ7BD4V9qCsyWWsQniVSmMEG5H3vtgnnBY/edit?usp=drivesdk' },
         { id: 'mall_8', grade: 'ak8', title: 'Mall för presentation (till Classroom)', url: 'https://docs.google.com/presentation/d/1SDNIOCVjttVdQ7lMV3hS17aKIAL_iJzat77pvl3lKCI/edit?usp=drivesdk' },
-        { id: 'film_9', grade: 'ak9', title: 'Filmvisning: Amrum', url: '#' },
+        { id: 'film_9', grade: 'ak9', title: 'Filmvisning: Amrum', url: 'https://sliplay.se/member/play/products/1027517-amrum' },
         { id: 'ref_9', grade: 'ak9', title: 'Diskussionsfrågor & Reflektion', url: '#' }
       ]
     };
 
-    let appData = defaultData;
+    // Använder defaultData direkt så att alla 30+ lärare alltid får de senaste länkarna utan cachekonflikter
+    let appData = JSON.parse(JSON.stringify(defaultData));
 
     function getLinkUrl(id) {
       const item = appData.links.find(l => l.id === id);
@@ -543,7 +602,7 @@
         const prefix = gr === 'ak7' ? '7' : (gr === 'ak8' ? '8' : '9');
         Object.keys(appData.rooms).filter(c => c.startsWith(prefix)).forEach(cls => {
           const div = document.createElement('div');
-          div.className = 'bg-stone-900 border border-stone-800 p-2.5 rounded-lg flex justify-between items-center';
+          div.className = 'room-badge bg-stone-900 border border-stone-800 p-2.5 rounded-lg flex justify-between items-center';
           div.innerHTML = `<span class="font-bold text-stone-200 text-sm">${cls}</span><span class="text-amber-400 font-mono text-sm">${appData.rooms[cls]}</span>`;
           container.appendChild(div);
         });
@@ -560,8 +619,8 @@
           a.href = link.url;
           a.target = '_blank';
           a.rel = 'noopener noreferrer';
-          a.className = 'block p-4 rounded-xl bg-stone-900/90 border border-stone-800 hover:border-amber-500/60 hover:bg-stone-850 transition group';
-          a.innerHTML = `<div class="flex justify-between items-center"><span class="font-bold text-stone-200 group-hover:text-amber-300 text-[17px]">${link.title}</span><span class="text-stone-500 group-hover:text-amber-400">↗</span></div><p class="text-xs text-stone-400 mt-1 truncate">${link.url === '#' ? 'Länk ej inlagd ännu' : link.url}</p>`;
+          a.className = 'theme-card block p-4 rounded-xl bg-stone-900/90 border border-stone-800 hover:border-amber-500/60 hover:bg-stone-850 transition group';
+          a.innerHTML = `<div class="flex justify-between items-center"><span class="theme-text-main font-bold text-stone-200 group-hover:text-amber-300 text-[17px]">${link.title}</span><span class="text-stone-500 group-hover:text-amber-400">↗</span></div><p class="text-xs text-stone-400 mt-1 truncate">${link.url === '#' ? 'Länk ej inlagd ännu' : link.url}</p>`;
           container.appendChild(a);
         });
       });
@@ -575,6 +634,20 @@
       const target = document.getElementById(`view-${viewId}`);
       if (target) target.classList.remove('hidden');
       window.scrollTo(0, 0);
+    }
+
+    // Dark Mode / Ljust läge-växlare
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('light-theme');
+      const icon = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
+      if (isLight) {
+        icon.textContent = '🌙';
+        label.textContent = 'Dark mode';
+      } else {
+        icon.textContent = '☀️';
+        label.textContent = 'Ljust läge';
+      }
     }
 
     let activeProjectorGrade = null;
@@ -732,6 +805,20 @@
       if (activeProjectorGrade) navTo(activeProjectorGrade);
     }
 
+    function openAdminWithPin() {
+      const modal = document.getElementById('admin-modal');
+      if (!modal.classList.contains('hidden')) {
+        toggleAdminModal();
+        return;
+      }
+      const entered = prompt('Ange adminkod:');
+      if (entered === ADMIN_PIN) {
+        toggleAdminModal();
+      } else if (entered !== null) {
+        alert('Fel kod.');
+      }
+    }
+
     function toggleAdminModal() {
       const modal = document.getElementById('admin-modal');
       modal.classList.toggle('hidden');
@@ -767,7 +854,6 @@
         const el = document.getElementById(`adm-link-${l.id}`);
         if (el) l.url = el.value.trim() || '#';
       });
-      localStorage.setItem('minnesdag_nm_data', JSON.stringify(appData));
       renderRooms();
       renderLinks();
       toggleAdminModal();
@@ -776,8 +862,9 @@
     function resetDefaults() {
       if (confirm('Är du säker på att du vill återställa alla salar och länkar?')) {
         appData = JSON.parse(JSON.stringify(defaultData));
-        localStorage.removeItem('minnesdag_nm_data');
         renderAdminInputs();
+        renderRooms();
+        renderLinks();
       }
     }
 
