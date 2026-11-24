@@ -192,6 +192,48 @@
     body.light-theme .room-badge span:last-child {
       color: #b45309 !important;
     }
+
+    /* Ljust tema även för Visning på projektor */
+    body.light-theme #view-projector {
+      background-color: #fafaf9 !important;
+      color: #1c1917 !important;
+    }
+    body.light-theme #view-projector .proj-topbar {
+      border-color: #d6d3d1 !important;
+    }
+    body.light-theme #view-projector .proj-topbar span {
+      color: #57534e !important;
+    }
+    body.light-theme #view-projector .proj-close-btn {
+      background-color: #e7e5e4 !important;
+      color: #1c1917 !important;
+      border-color: #d6d3d1 !important;
+    }
+    body.light-theme #view-projector .proj-close-btn:hover {
+      background-color: #d6d3d1 !important;
+    }
+    body.light-theme #view-projector #projector-content {
+      background-color: #ffffff !important;
+      border-color: #d6d3d1 !important;
+    }
+    body.light-theme #view-projector .proj-step {
+      background-color: #f5f5f4 !important;
+      border-color: #e7e5e4 !important;
+    }
+    body.light-theme #view-projector .proj-step p {
+      color: #1c1917 !important;
+    }
+    body.light-theme #view-projector .proj-step span {
+      color: #b45309 !important;
+    }
+    body.light-theme #view-projector .proj-heading {
+      color: #b45309 !important;
+      border-color: #e7e5e4 !important;
+    }
+    body.light-theme #view-projector .candle-body {
+      background: linear-gradient(to right, #d6d3d1, #f5f5f4 40%, #a8a29e) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
   </style>
 </head>
 <body class="bg-stone-950 text-stone-100 min-h-screen font-sans antialiased selection:bg-amber-900 selection:text-white flex flex-col justify-between transition-colors duration-200">
@@ -324,7 +366,7 @@
         <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Få förståelse för vad Förintelsen var utifrån frågorna vem, hur, när, var och varför.</p>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Presentation som innehåller genomgång, filmer och diskussioner.</p>
-        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+        <p class="text-sm sm:text-base text-amber-300 theme-heading-amber pt-2 italic font-semibold">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
@@ -342,12 +384,12 @@
             <p class="pl-4">Öppna presentationen och gå igenom bild för bild. Allt du ska säga och göra finns i presentationen.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100 theme-text-main">• Frågor i basgrupp och helklass</p>
-            <p class="pl-4">Frågorna till filmen i presentationen besvaras i basgruppen och lyfts sedan i helklass muntligt eller på tavlan.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Frågor i grupper och helklass</p>
+            <p class="pl-4">Dela in eleverna i grupper om 4 elever. Frågorna till filmen i presentationen besvaras i grupperna och lyfts sedan i helklass muntligt eller på tavlan.</p>
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Övning om Nürnberglagarna</p>
-            <p class="pl-4">Eleverna diskuterar och argumenterar om lagarna som skärmade av den judiska befolkningen från samhället.</p>
+            <p class="pl-4">Eleverna diskuterar och argumenterar i sina grupper om lagarna som skärmade av den judiska befolkningen från samhället.</p>
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Avslutning och anpassning</p>
@@ -387,7 +429,7 @@
         <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Få kännedom om viktiga personer under Förintelsen och hur enskilda personer kan påverka.</p>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Läsa och sammanfatta text, skapa en presentation samt presentera denna för klassen.</p>
-        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+        <p class="text-sm sm:text-base text-amber-300 theme-heading-amber pt-2 italic font-semibold">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
@@ -418,12 +460,12 @@
             <p class="pl-4">Kolla på filmklippet om Anne Frank (6 min) och gå igenom exempelpresentationen som mentor lagt upp.</p>
           </div>
           <div>
-            <p class="font-bold text-stone-100 theme-text-main">• Arbete i basgrupper (ca 45 min)</p>
-            <p class="pl-4">Eleverna läser faktablad om sin tilldelade person och sammanställer text och bild i sin mall.</p>
+            <p class="font-bold text-stone-100 theme-text-main">• Grupparbete (ca 45 min)</p>
+            <p class="pl-4">Dela in eleverna i grupper om 4 elever. Eleverna läser faktablad om sin tilldelade person och sammanställer text och bild i sin mall.</p>
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Presentationer (ca 30–40 min)</p>
-            <p class="pl-4">Basgrupperna presenterar sina personporträtt för varandra så alla får del av olika öden.</p>
+            <p class="pl-4">Grupperna presenterar sina personporträtt för varandra så alla får del av olika öden.</p>
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Reflektioner och avslutning</p>
@@ -463,7 +505,7 @@
         <h3 class="text-amber-300 theme-heading-amber text-xs font-bold uppercase tracking-wider">Mål att skriva på tavlan</h3>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att lära:</strong> Hur förintelsen visas på film och hur vi kan tänka kring detta.</p>
         <p class="text-[17px] text-stone-100 theme-text-main leading-relaxed"><strong>Att göra:</strong> Se film och reflektera kring denna.</p>
-        <p class="text-xs text-amber-300/90 theme-heading-amber pt-1 italic font-medium">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
+        <p class="text-sm sm:text-base text-amber-300 theme-heading-amber pt-2 italic font-semibold">Obs. Alla länkar som behövs finns längst ner på sidan samt direkt i projektorläget.</p>
       </div>
 
       <div class="space-y-4">
@@ -478,7 +520,7 @@
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Efterarbete & reflektion (kl. 10:30–11:00)</p>
-            <p class="pl-4">Samtal i basgrupper och helklass kring filmens frågeställningar och hur historien gestaltas.</p>
+            <p class="pl-4">Dela in eleverna i grupper om 4 elever för samtal kring filmens frågeställningar och hur historien gestaltas, följt av gemensam reflektion i helklass.</p>
           </div>
           <div>
             <p class="font-bold text-stone-100 theme-text-main">• Avrundning</p>
@@ -499,14 +541,14 @@
       </div>
     </section>
 
-    <!-- VISNING PÅ PROJEKTOR (HELSKÄRM UTAN SCROLL) -->
-    <section id="view-projector" class="hidden fixed inset-0 bg-stone-950 text-stone-100 z-50 flex flex-col justify-between p-4 sm:p-6 h-screen w-screen overflow-hidden">
+    <!-- VISNING PÅ PROJEKTOR (HELSKÄRM UTAN SCROLL, FÖLJER VALT TEMA) -->
+    <section id="view-projector" class="hidden fixed inset-0 bg-stone-950 text-stone-100 z-50 flex flex-col justify-between p-4 sm:p-6 h-screen w-screen overflow-hidden transition-colors duration-200">
       <!-- Topprad i projektorläge -->
-      <div class="flex justify-between items-center w-full max-w-5xl mx-auto shrink-0 pb-2 border-b border-stone-800/80">
+      <div class="proj-topbar flex justify-between items-center w-full max-w-5xl mx-auto shrink-0 pb-2 border-b border-stone-800/80">
         <span class="text-xs uppercase tracking-widest text-stone-500 font-semibold flex items-center gap-2">
           <span>🕯️</span> Nya Munken • Visning på projektor
         </span>
-        <button onclick="closeProjector()" class="px-3.5 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs sm:text-sm font-semibold rounded-lg border border-stone-700 transition shadow">
+        <button onclick="closeProjector()" class="proj-close-btn px-3.5 py-1.5 bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs sm:text-sm font-semibold rounded-lg border border-stone-700 transition shadow">
           ✕ Stäng visningsläge
         </button>
       </div>
@@ -518,7 +560,7 @@
         <div class="flex items-center justify-center gap-3 sm:gap-6 overflow-visible w-full">
           <div class="text-center sm:text-left space-y-1">
             <h2 class="text-2xl sm:text-4xl md:text-5xl font-black title-jagged-style leading-tight">FÖRINTELSENS MINNESDAG</h2>
-            <p class="text-stone-400 text-xs sm:text-base uppercase tracking-widest font-semibold">27 januari • Nya Munken</p>
+            <p class="text-stone-400 theme-text-muted text-xs sm:text-base uppercase tracking-widest font-semibold">27 januari • Nya Munken</p>
           </div>
           <!-- Ljuset parallellt bredvid -->
           <div class="candle-container candle-projector-scale select-none pointer-events-none shrink-0">
@@ -541,15 +583,15 @@
 
   <!-- INTROFILM INBÄDDAD I HELSKÄRM (MODAL) -->
   <div id="intro-video-modal" class="hidden fixed inset-0 bg-black z-[60] flex flex-col justify-between w-screen h-screen overflow-hidden">
-    <div class="flex justify-between items-center px-4 sm:px-6 py-3 bg-stone-950/90 border-b border-stone-800 shrink-0 z-10">
+    <div class="flex justify-between items-center px-4 sm:px-6 py-3 bg-stone-950/95 border-b border-stone-800 shrink-0 z-20">
       <span class="text-xs uppercase tracking-widest text-amber-400 font-bold flex items-center gap-2">
         <span>🎬</span> Introfilm (kl. 09:00, 5 min) – Tillfällig
       </span>
-      <button onclick="closeIntroVideo()" class="px-4 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-100 text-xs sm:text-sm font-semibold border border-stone-700 transition">
+      <button type="button" onclick="closeIntroVideo()" class="px-4 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-100 text-xs sm:text-sm font-semibold border border-stone-700 transition cursor-pointer">
         ✕ Stäng film
       </button>
     </div>
-    <div class="flex-grow w-full h-full bg-black flex items-center justify-center">
+    <div class="flex-grow w-full h-full bg-black flex items-center justify-center relative z-10">
       <iframe id="intro-video-iframe" src="" class="w-full h-full border-0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
   </div>
@@ -632,26 +674,29 @@
       iframe.src = embedUrl;
       modal.classList.remove('hidden');
 
-      // Begär helskärm för videofönstret
-      if (modal.requestFullscreen) {
-        modal.requestFullscreen().catch(() => {});
-      } else if (modal.webkitRequestFullscreen) {
-        modal.webkitRequestFullscreen();
+      // Begär helskärm på hela dokumentet (inte enskilt på modalen, så att stängning inte låser underliggande vy)
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const docEl = document.documentElement;
+        if (docEl.requestFullscreen) {
+          docEl.requestFullscreen().catch(() => {});
+        } else if (docEl.webkitRequestFullscreen) {
+          docEl.webkitRequestFullscreen();
+        }
       }
     }
 
     function closeIntroVideo() {
       const modal = document.getElementById('intro-video-modal');
       const iframe = document.getElementById('intro-video-iframe');
-      iframe.src = '';
+      iframe.src = 'about:blank';
       modal.classList.add('hidden');
 
-      // Om man inte kom från projektorläget, avsluta helskärm
+      // Om man inte är i projektorläget, avsluta helskärm på dokumentet
       const projectorHidden = document.getElementById('view-projector').classList.contains('hidden');
       if (projectorHidden) {
-        if (document.exitFullscreen) {
+        if (document.fullscreenElement && document.exitFullscreen) {
           document.exitFullscreen().catch(() => {});
-        } else if (document.webkitExitFullscreen) {
+        } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
           document.webkitExitFullscreen();
         }
       }
@@ -723,12 +768,14 @@
       activeProjectorGrade = grade;
       const content = document.getElementById('projector-content');
 
-      // Aktivera helskärm för iPad, Chromebook och PC
+      // Aktivera helskärm för iPad, Chromebook och PC (behåller valt tema)
       const docEl = document.documentElement;
-      if (docEl.requestFullscreen) {
-        docEl.requestFullscreen().catch(() => {});
-      } else if (docEl.webkitRequestFullscreen) {
-        docEl.webkitRequestFullscreen();
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (docEl.requestFullscreen) {
+          docEl.requestFullscreen().catch(() => {});
+        } else if (docEl.webkitRequestFullscreen) {
+          docEl.webkitRequestFullscreen();
+        }
       }
 
       if (grade === 'ak7') {
@@ -736,27 +783,27 @@
         const presUrl = getLinkUrl('pres_7');
         content.innerHTML = `
           <div class="space-y-3 sm:space-y-4">
-            <div class="border-b border-stone-800 pb-2">
+            <div class="proj-heading border-b border-stone-800 pb-2">
               <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 7: Vad var Förintelsen?</h3>
             </div>
 
             <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
                   <p class="text-stone-200 font-semibold text-base sm:text-lg">Gemensam introduktionsfilm (tillfällig)</p>
                 </div>
-                <button onclick="openIntroVideo(event, '${introUrl}')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                <button type="button" onclick="openIntroVideo(event, '${introUrl}')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0 cursor-pointer">
                   ▶ Starta film (tillfällig)
                 </button>
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 1,5 h</span>
-                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Genomgång & diskussion: Vad var Förintelsen?</p>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Genomgång & diskussion i grupper om 4 elever</p>
                 </div>
                 <a href="${presUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-lg border border-stone-700 transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
                   📊 Öppna presentation
@@ -764,7 +811,7 @@
               </div>
 
               <!-- Steg 3 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
                 <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 3 • Avslutning</span>
                 <p class="text-stone-200 font-semibold text-base sm:text-lg">Knyta ihop säcken (klart senast kl. 11:00)</p>
               </div>
@@ -777,24 +824,24 @@
         const anneUrl = getLinkUrl('anne_8');
         content.innerHTML = `
           <div class="space-y-3 sm:space-y-4">
-            <div class="border-b border-stone-800 pb-2">
+            <div class="proj-heading border-b border-stone-800 pb-2">
               <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 8: Modiga personer under Förintelsen</h3>
             </div>
 
             <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00 (5 min)</span>
                   <p class="text-stone-200 font-semibold text-base sm:text-lg">Gemensam introduktionsfilm (tillfällig)</p>
                 </div>
-                <button onclick="openIntroVideo(event, '${introUrl}')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
+                <button type="button" onclick="openIntroVideo(event, '${introUrl}')" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0 cursor-pointer">
                   ▶ Starta film (tillfällig)
                 </button>
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • ca 15 min</span>
                   <p class="text-stone-200 font-semibold text-base sm:text-lg">Vem var Anne Frank?</p>
@@ -810,13 +857,13 @@
               </div>
 
               <!-- Steg 3 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
                 <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 3 • ca 45 min</span>
-                <p class="text-stone-200 font-semibold text-base sm:text-lg">Personporträtt: Grupparbete i basgrupper</p>
+                <p class="text-stone-200 font-semibold text-base sm:text-lg">Personporträtt: Grupparbete (grupper om 4 elever)</p>
               </div>
 
               <!-- Steg 4 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800">
                 <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 4 • ca 30–40 min</span>
                 <p class="text-stone-200 font-semibold text-base sm:text-lg">Redovisningar & Reflektion (klart kl. 11:00)</p>
               </div>
@@ -828,13 +875,13 @@
         const refUrl = getLinkUrl('ref_9');
         content.innerHTML = `
           <div class="space-y-3 sm:space-y-4">
-            <div class="border-b border-stone-800 pb-2">
+            <div class="proj-heading border-b border-stone-800 pb-2">
               <h3 class="text-xl sm:text-2xl font-bold text-amber-300">Årskurs 9: Film & Reflektion</h3>
             </div>
 
             <div class="space-y-2.5 sm:space-y-3">
               <!-- Steg 1 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 1 • kl. 09:00–10:30 (1 h 30 min)</span>
                   <p class="text-stone-200 font-semibold text-base sm:text-lg">Filmvisning: Amrum</p>
@@ -845,10 +892,10 @@
               </div>
 
               <!-- Steg 2 -->
-              <div class="bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
+              <div class="proj-step bg-stone-950/70 p-3 sm:p-3.5 rounded-xl border border-stone-800 flex justify-between items-center gap-3">
                 <div>
                   <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Steg 2 • kl. 10:30–11:00 (30 min)</span>
-                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Efterarbete & diskussionsfrågor</p>
+                  <p class="text-stone-200 font-semibold text-base sm:text-lg">Efterarbete & diskussionsfrågor (grupper om 4 elever)</p>
                 </div>
                 <a href="${refUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold rounded-lg border border-stone-700 transition shadow flex items-center gap-1.5 text-xs sm:text-sm shrink-0">
                   📄 Diskussionsfrågor
@@ -863,9 +910,9 @@
 
     function closeProjector() {
       // Avsluta helskärm om aktiv
-      if (document.exitFullscreen) {
+      if (document.fullscreenElement && document.exitFullscreen) {
         document.exitFullscreen().catch(() => {});
-      } else if (document.webkitExitFullscreen) {
+      } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
       }
 
